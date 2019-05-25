@@ -1,10 +1,17 @@
 package GUI;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import com.toedter.calendar.*;
 
 public class AddEventWindow
 {
@@ -12,23 +19,44 @@ public class AddEventWindow
 	JLabel titleString, descriptionString, placeString, dateString, beginningString, endString;
 	TextField titleField, placeField;
 	JTextArea descriptionArea;
-	JButton closeButton;
-	Choice choiceStartYear, choiceStartMonth, choiceStartDay, choiceEndYear, choiceEndMonth, choiceEndDay;
+	JButton applyButton, cancelButton;
+	JDateChooser dateStartChooser, dateEndChooser, alarmChooser;
+	JComboBox<String> startHour, endHour, startMinute, endMinute, alarmHour, alarmMinute;
+	Checkbox alarmCheckbox;
 	
 	AddEventWindow()
 	{
 		frame = new JFrame("Add event");
-		frame.setBounds(100,100,600,600);
+		frame.setBounds(100,100,600,650);
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 	
 		addLabels();
 		addFields();
-		addChoices();
+		addDateChoosers();
+		addAlarm();
+		addButtons();
 		
-		/*closeButton = new JButton("Close");
-		closeButton.setBounds(100, 100, 50, 30);
-		frame.getContentPane().add(closeButton);*/
+		
+		alarmCheckbox.addItemListener(new ItemListener()
+				{
+					@Override
+					public void itemStateChanged(ItemEvent arg0)
+					{
+						alarmChooser.setEnabled(!alarmChooser.isEnabled());
+						alarmHour.setEnabled(!alarmHour.isEnabled());
+						alarmMinute.setEnabled(!alarmMinute.isEnabled());
+					}
+				});
+		
+		cancelButton.addActionListener(new ActionListener()
+				{
+					@Override
+					public void actionPerformed(ActionEvent arg0)
+					{
+						frame.dispose();
+					}
+				});
 	}
 	
 	private void addLabels()
@@ -58,15 +86,15 @@ public class AddEventWindow
 		frame.getContentPane().add(dateString);
 		
 		beginningString = new JLabel("Beginning");
-		beginningString.setBounds(20,375,100,20);
+		beginningString.setBounds(20,380,100,20);
 		beginningString.setVisible(true);
-		beginningString.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		beginningString.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		frame.getContentPane().add(beginningString);
 		
 		endString = new JLabel("End");
-		endString.setBounds(20,415,100,20);
+		endString.setBounds(20,428,100,20);
 		endString.setVisible(true);
-		endString.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		endString.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		frame.getContentPane().add(endString);
 	}
 	
@@ -89,9 +117,112 @@ public class AddEventWindow
 		frame.getContentPane().add(placeField);
 	}
 	
-	private void addChoices()
+	private void addDateChoosers()
 	{
-		choiceStartYear = new Choice();
+		dateStartChooser = new JDateChooser();
+		dateStartChooser.setBounds(130, 375, 140, 30);
+		dateStartChooser.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		frame.getContentPane().add(dateStartChooser);
+		
+		dateEndChooser = new JDateChooser();
+		dateEndChooser.setBounds(130, 420, 140, 30);
+		dateEndChooser.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		frame.getContentPane().add(dateEndChooser);
+		
+		startHour = new JComboBox<String>();
+		startHour.setBounds(310, 375, 50, 30);
+		for (int i=0; i<24; i++)
+		{
+			if (i<10)
+				startHour.addItem("0" + Integer.toString(i));
+			else
+				startHour.addItem(Integer.toString(i));
+		}
+		frame.getContentPane().add(startHour);
+		
+		startMinute = new JComboBox<String>();
+		startMinute.setBounds(370, 375, 50, 30);
+		for (int i=0; i<60; i++)
+		{
+			if (i<10)
+				startMinute.addItem("0" + Integer.toString(i));
+			else
+				startMinute.addItem(Integer.toString(i));
+		}
+		frame.getContentPane().add(startMinute);
+		
+		endHour = new JComboBox<String>();
+		endHour.setBounds(310, 420, 50, 30);
+		for (int i=0; i<24; i++)
+		{
+			if (i<10)
+				endHour.addItem("0" + Integer.toString(i));
+			else
+				endHour.addItem(Integer.toString(i));
+		}
+		frame.getContentPane().add(endHour);
+		
+		endMinute = new JComboBox<String>();
+		endMinute.setBounds(370, 420, 50, 30);
+		for (int i=0; i<60; i++)
+		{
+			if (i<10)
+				endMinute.addItem("0" + Integer.toString(i));
+			else
+				endMinute.addItem(Integer.toString(i));
+		}
+		frame.getContentPane().add(endMinute);
+	}
+	
+	private void addAlarm()
+	{
+		alarmCheckbox = new Checkbox("Set alarm", false);
+		alarmCheckbox.setBounds(20, 480, 100, 30);
+		alarmCheckbox.setFont(new Font("Times New Roman", Font.BOLD, 16));
+		frame.getContentPane().add(alarmCheckbox);
+		
+		alarmChooser = new JDateChooser();
+		alarmChooser.setBounds(130, 480, 140, 30);
+		alarmChooser.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		alarmChooser.setEnabled(false);
+		frame.getContentPane().add(alarmChooser);
+		
+		alarmHour = new JComboBox<String>();
+		alarmHour.setBounds(310, 480, 50, 30);
+		for (int i=0; i<24; i++)
+		{
+			if (i<10)
+				alarmHour.addItem("0" + Integer.toString(i));
+			else
+				alarmHour.addItem(Integer.toString(i));
+		}
+		alarmHour.setEnabled(false);
+		frame.getContentPane().add(alarmHour);
+		
+		alarmMinute = new JComboBox<String>();
+		alarmMinute.setBounds(370, 480, 50, 30);
+		for (int i=0; i<60; i++)
+		{
+			if (i<10)
+				alarmMinute.addItem("0" + Integer.toString(i));
+			else
+				alarmMinute.addItem(Integer.toString(i));
+		}
+		alarmMinute.setEnabled(false);
+		frame.getContentPane().add(alarmMinute);
+	}
+	
+	private void addButtons()
+	{
+		applyButton = new JButton("Apply");
+		applyButton.setBounds(140, 560, 100, 30);
+		applyButton.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		frame.getContentPane().add(applyButton);
+		
+		cancelButton = new JButton("Cancel");
+		cancelButton.setBounds(340, 560, 100, 30);
+		cancelButton.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		frame.getContentPane().add(cancelButton);
 	}
 	
 	
