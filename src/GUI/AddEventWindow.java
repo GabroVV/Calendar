@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Locale;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -30,6 +32,7 @@ public class AddEventWindow
 		frame.setBounds(100,100,600,650);
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
+		//frame.getContentPane().setBackground(Color.getHSBColor(180,100,50));
 	
 		addLabels();
 		addFields();
@@ -109,6 +112,7 @@ public class AddEventWindow
 		descriptionArea = new JTextArea("");
 		descriptionArea.setBounds(20, 130, 500, 96);
 		descriptionArea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		descriptionArea.setBorder(BorderFactory.createLoweredBevelBorder());
 		frame.getContentPane().add(descriptionArea);
 			
 		placeField = new TextField("");
@@ -122,11 +126,13 @@ public class AddEventWindow
 		dateStartChooser = new JDateChooser();
 		dateStartChooser.setBounds(130, 375, 140, 30);
 		dateStartChooser.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		dateStartChooser.setLocale(new Locale("English"));
 		frame.getContentPane().add(dateStartChooser);
 		
 		dateEndChooser = new JDateChooser();
 		dateEndChooser.setBounds(130, 420, 140, 30);
 		dateEndChooser.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		dateEndChooser.setLocale(new Locale("English"));
 		frame.getContentPane().add(dateEndChooser);
 		
 		startHour = new JComboBox<String>();
@@ -184,6 +190,7 @@ public class AddEventWindow
 		alarmChooser = new JDateChooser();
 		alarmChooser.setBounds(130, 480, 140, 30);
 		alarmChooser.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		alarmChooser.setLocale(new Locale("English"));
 		alarmChooser.setEnabled(false);
 		frame.getContentPane().add(alarmChooser);
 		

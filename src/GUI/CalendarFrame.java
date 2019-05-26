@@ -1,11 +1,14 @@
 package GUI;
 
-import java.awt.Button;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 
 import javax.swing.*;
+
+import com.toedter.calendar.JCalendar;
 
 public class CalendarFrame implements ActionListener
 {
@@ -13,6 +16,7 @@ public class CalendarFrame implements ActionListener
 	JMenuBar menuBar;
 	JMenu menu, settings, help;
 	JMenuItem addEvent, exit, backgroundColor, authors, aboutProgram;
+	JCalendar calendar;
 	
 	
 	public CalendarFrame()
@@ -20,8 +24,9 @@ public class CalendarFrame implements ActionListener
 	frame = new JFrame ("Calendar");
 	frame.setSize(900, 600);
 	frame.setLocation(500, 200);
-	//frame.getContentPane().add(emptyLabel, BorderLayout.CENTER);
 	frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+	
+	addCalendar();
 	
 	createMenuBar();
 	createMenuItems();
@@ -140,6 +145,15 @@ public class CalendarFrame implements ActionListener
 		menuBar.add(menu);
 		menuBar.add(settings);
 		menuBar.add(help);
+	}
+	
+	public void addCalendar()
+	{
+		calendar = new JCalendar();
+		calendar.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		calendar.setLocale(new Locale("English"));
+		//calendar.setLayout(new GridLayout(2,2));
+		frame.add(calendar);
 	}
 
 	@Override
