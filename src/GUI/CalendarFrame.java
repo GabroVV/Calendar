@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.Locale;
 
 import javax.swing.*;
@@ -15,8 +16,8 @@ public class CalendarFrame implements ActionListener
 	JFrame frame;
 	JMenuBar menuBar;
 	JMenu menu, settings, help;
-	JMenuItem addEvent, exit, backgroundColor, authors, aboutProgram;
-	JCalendar calendar;
+	JMenuItem addEvent, exit, fontColor, authors, aboutProgram;
+	static JCalendar calendar;
 	
 	
 	public CalendarFrame()
@@ -24,7 +25,7 @@ public class CalendarFrame implements ActionListener
 	frame = new JFrame ("Calendar");
 	frame.setSize(900, 600);
 	frame.setLocation(500, 200);
-	frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 	addCalendar();
 	
@@ -32,31 +33,7 @@ public class CalendarFrame implements ActionListener
 	createMenuItems();
 	addToMenuBar();
 	
-	
 	// ACTIONS
-	backgroundColor.addActionListener(new ActionListener()
-	{
-		@Override
-		public void actionPerformed(ActionEvent event)
-		{
-			JInternalFrame iFrame = new JInternalFrame("Change background color",false,true);	// only 'X' left
-			JComponent newContentPane = new ColorChooser();
-	        newContentPane.setOpaque(true); //content panes must be opaque
-	        iFrame.setContentPane(newContentPane);
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        iFrame.setVisible(true);
-	        frame.add(iFrame);
-	        
-//	        Button button = new Button("Apply");
-//	        button.setLocation(200, 200);
-//	        button.setSize(10, 10);
-//	        iFrame.add(button);
-//	        button.addActionListener(this);
-		  
-	        //frame.getContentPane().setBackground();
-		}
-	});
-	
 	authors.addActionListener(new ActionListener()
 			{
 				@Override
@@ -97,6 +74,16 @@ public class CalendarFrame implements ActionListener
 		}
 		});
 	
+	fontColor.addActionListener(new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent arg0)
+				{
+					ColorChooserFrame chooserWindow = new ColorChooserFrame();
+					chooserWindow.frame.setVisible(true);
+				}
+			});
+	
 	
 	
 	
@@ -126,8 +113,8 @@ public class CalendarFrame implements ActionListener
 		
 		// SETTINGS BAR
 		settings = new JMenu("Settings");
-		backgroundColor = new JMenuItem("Change background color");
-		settings.add(backgroundColor);
+		fontColor = new JMenuItem("Change font color");
+		settings.add(fontColor);
 		
 		
 		// HELP BAR
@@ -152,8 +139,13 @@ public class CalendarFrame implements ActionListener
 		calendar = new JCalendar();
 		calendar.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		calendar.setLocale(new Locale("English"));
-		//calendar.setLayout(new GridLayout(2,2));
+		//calendar.setLayout(new GridLayout(2,2));	
 		frame.add(calendar);
+	}
+	
+	public static void changeColor(Color color)
+	{
+		calendar.setForeground(color);
 	}
 
 	@Override
