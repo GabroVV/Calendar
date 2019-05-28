@@ -32,7 +32,6 @@ public class AddEventWindow
 		frame.setBounds(100,100,600,650);
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
-		//frame.getContentPane().setBackground(Color.getHSBColor(180,100,50));
 	
 		addLabels();
 		addFields();
@@ -108,11 +107,11 @@ public class AddEventWindow
 		titleField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		frame.getContentPane().add(titleField);
 		
-		// ZROBIC ZEBY NIE DALO SIE WYCHODZIC POZA GRANICE
 		descriptionArea = new JTextArea("");
 		descriptionArea.setBounds(20, 130, 500, 96);
 		descriptionArea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		descriptionArea.setBorder(BorderFactory.createLoweredBevelBorder());
+		descriptionArea.setLineWrap(true);
 		frame.getContentPane().add(descriptionArea);
 			
 		placeField = new TextField("");

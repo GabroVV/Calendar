@@ -14,8 +14,8 @@ public class CalendarFrame implements ActionListener
 {
 	JFrame frame;
 	JMenuBar menuBar;
-	JMenu menu, settings, help;
-	JMenuItem addEvent, exit, fontColor, authors, aboutProgram;
+	JMenu menu, settings, help, saveTo, loadFrom;
+	JMenuItem addEvent, deleteEvents, exit, fontColor, authors, aboutProgram, saveXML, saveDatabase, loadXML, loadDatabase;
 	static JCalendar calendar;
 	
 	
@@ -73,6 +73,16 @@ public class CalendarFrame implements ActionListener
 		}
 		});
 	
+	deleteEvents.addActionListener(new ActionListener()
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0)
+			{
+				DeleteEventWindow eventWindow = new DeleteEventWindow();
+				eventWindow.frame.setVisible(true);
+			}
+	});
+	
 	fontColor.addActionListener(new ActionListener()
 			{
 				@Override
@@ -111,9 +121,26 @@ public class CalendarFrame implements ActionListener
 		// MENU BAR
 		menu = new JMenu("Menu");
 		addEvent = new JMenuItem("Add event");
+		deleteEvents = new JMenuItem("Delete events");
+		
+		saveTo = new JMenu("Save to");
+		saveXML = new JMenuItem("XML");
+		saveDatabase = new JMenuItem("database");
+		
+		loadFrom = new JMenu("Load from");
+		loadXML = new JMenuItem("XML");
+		loadDatabase = new JMenuItem("database");
+		
 		exit = new JMenuItem("Exit");
 		
 		menu.add(addEvent);
+		menu.add(deleteEvents);
+		menu.add(saveTo);
+		saveTo.add(saveXML);
+		saveTo.add(saveDatabase);
+		menu.add(loadFrom);
+		loadFrom.add(loadXML);
+		loadFrom.add(loadDatabase);
 		menu.addSeparator();
 		menu.add(exit);
 		
@@ -144,8 +171,10 @@ public class CalendarFrame implements ActionListener
 	public void addCalendar()
 	{
 		calendar = new JCalendar();
-		calendar.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		calendar.setFont(new Font("Times New Roman", Font.BOLD, 26));
 		calendar.setLocale(new Locale("English"));
+		calendar.getMonthChooser().setFont(new Font("Times New Roman", Font.BOLD, 20));
+		calendar.getYearChooser().setFont(new Font("Times New Roman", Font.BOLD, 20));
 		frame.add(calendar);
 	}
 
