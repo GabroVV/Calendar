@@ -37,7 +37,7 @@ public class ColorChooserFrame
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				CalendarFrame.changeColor(colorChooser.getColor());
+				CalendarFrame.calendar.setForeground(colorChooser.getColor());
 				frame.dispose();
 		}
 	});

@@ -1,15 +1,14 @@
 package GUI;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Calendar;
 import java.util.Locale;
-
 import javax.swing.*;
-
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.*;
 
 public class CalendarFrame implements ActionListener
 {
@@ -84,7 +83,15 @@ public class CalendarFrame implements ActionListener
 				}
 			});
 	
-	
+	calendar.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener()
+			{
+				@Override
+				public void propertyChange(PropertyChangeEvent arg0)
+				{
+					DayViewWindow dayViewWindow = new DayViewWindow();
+					dayViewWindow.frame.setVisible(true);
+				}
+			});
 	
 	
 	
@@ -139,13 +146,7 @@ public class CalendarFrame implements ActionListener
 		calendar = new JCalendar();
 		calendar.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		calendar.setLocale(new Locale("English"));
-		//calendar.setLayout(new GridLayout(2,2));	
 		frame.add(calendar);
-	}
-	
-	public static void changeColor(Color color)
-	{
-		calendar.setForeground(color);
 	}
 
 	@Override
