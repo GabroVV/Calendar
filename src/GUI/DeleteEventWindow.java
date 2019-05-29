@@ -25,6 +25,16 @@ public class DeleteEventWindow
 		
 		addComponents();
 		
+		
+		okButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				// UZUPELNIC
+			}
+		});
+		
 		cancelButton.addActionListener(new ActionListener()
 		{
 			@Override

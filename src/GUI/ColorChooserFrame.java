@@ -18,6 +18,7 @@ public class ColorChooserFrame
 		frame = new JFrame("Change background color");
 		frame.setBounds(300, 200, 650, 550);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 		
 		addColorChooser();
 		addButtons();

@@ -4,19 +4,22 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.Calendar;
 import java.util.Locale;
 import javax.swing.*;
 import com.toedter.calendar.JCalendar;
+
 import com.toedter.calendar.*;
 
-public class CalendarFrame implements ActionListener
+public class CalendarFrame
 {
 	JFrame frame;
 	JMenuBar menuBar;
 	JMenu menu, settings, help, saveTo, loadFrom;
 	JMenuItem addEvent, deleteEvents, exit, fontColor, authors, aboutProgram, saveXML, saveDatabase, loadXML, loadDatabase;
 	static JCalendar calendar;
+	ImageIcon icon;
 	
 	
 	public CalendarFrame()
@@ -25,6 +28,9 @@ public class CalendarFrame implements ActionListener
 	frame.setSize(900, 600);
 	frame.setLocation(500, 200);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	icon = new ImageIcon(".\\icon.png");
+	frame.setIconImage(icon.getImage());
+	frame.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	
 	addCalendar();
 	
@@ -47,7 +53,7 @@ public class CalendarFrame implements ActionListener
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-			JOptionPane.showMessageDialog(frame, "A simple calendar, where you can add events.","Description",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(frame, "A simple calendar. User can add events, set alarms, load and save data to XML or database.","Description",JOptionPane.INFORMATION_MESSAGE);
 		}
 	});
 	
@@ -93,21 +99,49 @@ public class CalendarFrame implements ActionListener
 				}
 			});
 	
-	calendar.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener()
+	loadXML.addActionListener(new ActionListener()
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0)
+		{
+			JFileChooser fileChooser = new JFileChooser(".");
+
+			int returnVal = fileChooser.showOpenDialog(frame);
+			
+			if (returnVal == JFileChooser.APPROVE_OPTION)
+			{
+				File file = fileChooser.getSelectedFile();
+			}
+		}
+	});
+	
+	/*calendar.addMouseListener(new MouseAdapter()
 			{
 				@Override
-				public void propertyChange(PropertyChangeEvent arg0)
+				public void mouseClicked(MouseEvent event)
 				{
-					DayViewWindow dayViewWindow = new DayViewWindow();
-					dayViewWindow.frame.setVisible(true);
+					//if (event.getButton() == MouseEvent.BUTTON1)
+					{
+					
+					}
 				}
-			});
+			});*/
 	
+	calendar.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener()
+	{
+		@Override
+		public void propertyChange(PropertyChangeEvent arg0)
+		{	
+			DayViewWindow dayViewWindow = new DayViewWindow();
+			dayViewWindow.frame.setVisible(true);
+		}
+	});
 	
 	
 	frame.setVisible(true);
 	}	// end of constructor
 
+	
 	
 	public void createMenuBar()
 	{
@@ -135,6 +169,7 @@ public class CalendarFrame implements ActionListener
 		
 		menu.add(addEvent);
 		menu.add(deleteEvents);
+		menu.addSeparator();
 		menu.add(saveTo);
 		saveTo.add(saveXML);
 		saveTo.add(saveDatabase);
@@ -177,11 +212,11 @@ public class CalendarFrame implements ActionListener
 		calendar.getYearChooser().setFont(new Font("Times New Roman", Font.BOLD, 20));
 		frame.add(calendar);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0)
+	
+	public boolean doubleClick(MouseEvent event)
 	{
-		// TODO Auto-generated method stub
-		
+		if (event.getClickCount() == 2)
+			return true;
+		else return false;
 	}
 }
