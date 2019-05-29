@@ -1,8 +1,8 @@
-package Logic;
+package logic;
 
 import java.awt.EventQueue;
 
-import GUI.*;
+import view.*;
 
 public class Main
 {
