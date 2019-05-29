@@ -1,6 +1,6 @@
 package data;
 import java.util.*;
-public class Event {
+public class Event implements Comparable<Event> {
 	String title;
 	String description;
 	String place;
@@ -54,6 +54,12 @@ public class Event {
 	}
 	public void setEndDate(Calendar endDate) {
 		this.endDate = endDate;
+	}
+
+	@Override
+	public int compareTo(Event e) {
+		
+		return startDate.compareTo(endDate);
 	}
 	
 }
