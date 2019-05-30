@@ -9,10 +9,21 @@ public class Event implements Comparable<Event> {
 	Calendar startDate;
 	Calendar endDate;
 	
-	Event(){
+	public Event() {
 		
 	}
 	
+	public Event(String title, String description, String place, boolean alarmTrigger, Calendar alarmDate,
+			Calendar startDate, Calendar endDate) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.place = place;
+		this.alarmTrigger = alarmTrigger;
+		this.alarmDate = alarmDate;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
 	public String getTitle() {
 		return title;
 	}
