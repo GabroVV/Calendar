@@ -5,6 +5,7 @@ import java.util.*;
 public class EventCollection{
 	List<Event> events;
 	
+
 	public List<Event> getEvents() {
 		return events;
 	}
@@ -13,7 +14,7 @@ public class EventCollection{
 		this.events = events;
 	}
 
-	EventCollection(){
+	public EventCollection(){
 		events = new ArrayList<Event>();
 	}
 	
