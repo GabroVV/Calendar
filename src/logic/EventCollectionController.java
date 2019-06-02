@@ -24,7 +24,7 @@ public class EventCollectionController {
 	/*
 	 * Sprawdza czy wydarzenia odbywa sie w trakcie podanego dnia.
 	 */
-	public boolean eventIsOnGivenDate(Event event, Calendar date) {
+	public boolean eventIsOnGivenDate(MyEvent event, Calendar date) {
 		if(event.getStartDate().get(Calendar.YEAR) > date.get(Calendar.YEAR) || 
 		   event.getEndDate().get(Calendar.YEAR) < date.get(Calendar.YEAR)){		
 			return false;

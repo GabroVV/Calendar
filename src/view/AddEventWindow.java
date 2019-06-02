@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Locale;
+import java.util.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,7 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import com.toedter.calendar.*;
-
+import data.*;
+import logic.*;
 public class AddEventWindow
 {
 	JFrame frame;
@@ -25,9 +26,11 @@ public class AddEventWindow
 	JDateChooser dateStartChooser, dateEndChooser, alarmChooser;
 	JComboBox<String> startHour, endHour, startMinute, endMinute, alarmHour, alarmMinute;
 	Checkbox alarmCheckbox;
+	EventCollection events;
 	
-	AddEventWindow()
+	AddEventWindow(EventCollection events)
 	{
+		this.events = events;
 		frame = new JFrame("Add event");
 		frame.setBounds(100,100,600,650);
 		frame.setResizable(false);
@@ -56,8 +59,36 @@ public class AddEventWindow
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				// UZUPELNIC
+			/*	alarmChooser.getCalendar().set(Calendar.HOUR_OF_DAY, alarmChooser.getCalendar().get(Calendar.HOUR_OF_DAY) + Integer.parseInt((String)alarmHour.getSelectedItem()));
+				alarmChooser.getCalendar().set(Calendar.MINUTE, Integer.parseInt((String)alarmMinute.getSelectedItem()));
+				*/
+				
+				Calendar alarmCalendar = alarmChooser.getCalendar();
+				Calendar dateStartCalendar = dateStartChooser.getCalendar();
+				Calendar dateEndCalendar = dateEndChooser.getCalendar();
+
+				alarmCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)alarmHour.getSelectedItem()));
+				alarmCalendar.set(Calendar.MINUTE, Integer.parseInt((String)alarmMinute.getSelectedItem()));
+				
+				dateStartCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)startHour.getSelectedItem()));
+				dateStartCalendar.set(Calendar.MINUTE, Integer.parseInt((String)startMinute.getSelectedItem()));
+				
+				dateEndCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)endHour.getSelectedItem()));
+				dateEndCalendar.set(Calendar.MINUTE, Integer.parseInt((String)endMinute.getSelectedItem()));
+				events.addEvent(new MyEvent(
+						titleField.getText(),
+						descriptionArea.getText(),
+						placeField.getText(),
+						alarmCheckbox.getState(),
+						alarmCalendar,
+						dateStartCalendar,
+						dateEndCalendar
+						));
+				
+				System.out.println(events.getEvent(0).toString());
 			}
+			
+			
 		});
 		
 		cancelButton.addActionListener(new ActionListener()

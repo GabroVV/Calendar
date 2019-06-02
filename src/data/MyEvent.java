@@ -1,6 +1,6 @@
 package data;
 import java.util.*;
-public class Event implements Comparable<Event> {
+public class MyEvent implements Comparable<MyEvent> {
 	String title;
 	String description;
 	String place;
@@ -9,11 +9,11 @@ public class Event implements Comparable<Event> {
 	Calendar startDate;
 	Calendar endDate;
 	
-	public Event() {
+	public MyEvent() {
 		
 	}
 	
-	public Event(String title, String description, String place, boolean alarmTrigger, Calendar alarmDate,
+	public MyEvent(String title, String description, String place, boolean alarmTrigger, Calendar alarmDate,
 			Calendar startDate, Calendar endDate) {
 		super();
 		this.title = title;
@@ -68,9 +68,17 @@ public class Event implements Comparable<Event> {
 	}
 
 	@Override
-	public int compareTo(Event e) {
+	public int compareTo(MyEvent e) {
 		
 		return startDate.compareTo(endDate);
+	}
+
+	@Override
+	public String toString() {
+		return "MyEvent [title=" + title + ", description=" + description + ", place=" + place + ", alarmTrigger="
+				+ alarmTrigger + ", alarmDate=" + (alarmDate.get(Calendar.MONTH)+1) +"." + alarmDate.get(Calendar.DAY_OF_MONTH) +"." + alarmDate.get(Calendar.YEAR) +" " + alarmDate.get(Calendar.HOUR_OF_DAY)  +":" + alarmDate.get(Calendar.MINUTE) +
+				", startDate=" + (startDate.get(Calendar.MONTH)+1) +"." + startDate.get(Calendar.DAY_OF_MONTH) +"." + startDate.get(Calendar.YEAR) +" " + startDate.get(Calendar.HOUR_OF_DAY)  +":" + startDate.get(Calendar.MINUTE) +
+				", endDate=" + (endDate.get(Calendar.MONTH)+1) +"." + endDate.get(Calendar.DAY_OF_MONTH) +"." + endDate.get(Calendar.YEAR) +" " + endDate.get(Calendar.HOUR_OF_DAY)  +":" + endDate.get(Calendar.MINUTE) + "]";
 	}
 	
 }

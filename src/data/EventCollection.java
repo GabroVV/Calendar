@@ -3,30 +3,30 @@ package data;
 import java.util.*;
 
 public class EventCollection{
-	List<Event> events;
+	List<MyEvent> events;
 	
 
-	public List<Event> getEvents() {
+	public List<MyEvent> getEvents() {
 		return events;
 	}
 
-	public void setEvents(List<Event> events) {
+	public void setEvents(List<MyEvent> events) {
 		this.events = events;
 	}
 
 	public EventCollection(){
-		events = new ArrayList<Event>();
+		events = new ArrayList<MyEvent>();
 	}
 	
-	public boolean addEvent(Event e) {
+	public boolean addEvent(MyEvent e) {
 		return events.add(e);
 	}
 	
-	public boolean removeEvent(Event e) {
+	public boolean removeEvent(MyEvent e) {
 		return events.remove(e);
 	}
 	
-	public Event getEvent(int i) {
+	public MyEvent getEvent(int i) {
 		return events.get(i);
 	}
 }

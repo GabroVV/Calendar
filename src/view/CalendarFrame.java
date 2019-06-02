@@ -11,7 +11,7 @@ import javax.swing.*;
 import com.toedter.calendar.JCalendar;
 
 import com.toedter.calendar.*;
-
+import data.EventCollection;
 public class CalendarFrame
 {
 	JFrame frame;
@@ -20,9 +20,10 @@ public class CalendarFrame
 	JMenuItem addEvent, deleteEvents, exit, fontColor, authors, aboutProgram, saveXML, saveDatabase, loadXML, loadDatabase;
 	static JCalendar calendar;
 	ImageIcon icon;
+	EventCollection events;
 	
 	
-	public CalendarFrame()
+	public CalendarFrame(EventCollection events)
 	{
 	frame = new JFrame ("Calendar");
 	frame.setSize(900, 600);
@@ -31,7 +32,7 @@ public class CalendarFrame
 	icon = new ImageIcon(".\\icon.png");
 	frame.setIconImage(icon.getImage());
 	frame.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	
+	this.events = events;
 	addCalendar();
 	
 	createMenuBar();
@@ -74,7 +75,7 @@ public class CalendarFrame
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-				AddEventWindow eventWindow = new AddEventWindow();
+				AddEventWindow eventWindow = new AddEventWindow(events);
 				eventWindow.frame.setVisible(true);
 		}
 		});
