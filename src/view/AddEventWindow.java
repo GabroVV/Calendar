@@ -59,35 +59,40 @@ public class AddEventWindow
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-			/*	alarmChooser.getCalendar().set(Calendar.HOUR_OF_DAY, alarmChooser.getCalendar().get(Calendar.HOUR_OF_DAY) + Integer.parseInt((String)alarmHour.getSelectedItem()));
-				alarmChooser.getCalendar().set(Calendar.MINUTE, Integer.parseInt((String)alarmMinute.getSelectedItem()));
-				*/
-				
-				Calendar alarmCalendar = alarmChooser.getCalendar();
 				Calendar dateStartCalendar = dateStartChooser.getCalendar();
 				Calendar dateEndCalendar = dateEndChooser.getCalendar();
 
-				alarmCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)alarmHour.getSelectedItem()));
-				alarmCalendar.set(Calendar.MINUTE, Integer.parseInt((String)alarmMinute.getSelectedItem()));
+				
 				
 				dateStartCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)startHour.getSelectedItem()));
 				dateStartCalendar.set(Calendar.MINUTE, Integer.parseInt((String)startMinute.getSelectedItem()));
 				
 				dateEndCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)endHour.getSelectedItem()));
 				dateEndCalendar.set(Calendar.MINUTE, Integer.parseInt((String)endMinute.getSelectedItem()));
-				events.addEvent(new MyEvent(
-						titleField.getText(),
-						descriptionArea.getText(),
-						placeField.getText(),
-						alarmCheckbox.getState(),
-						alarmCalendar,
-						dateStartCalendar,
-						dateEndCalendar
-						));
+				Calendar alarmCalendar = null;
 				
-				System.out.println(events.getEvent(0).toString());
+				if(alarmCheckbox.getState() == true) {
+					alarmCalendar = alarmChooser.getCalendar();
+					alarmCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)alarmHour.getSelectedItem()));
+					alarmCalendar.set(Calendar.MINUTE, Integer.parseInt((String)alarmMinute.getSelectedItem()));
+				}
+				if(titleField.getText().isEmpty() == false) {
+					events.addEvent(new MyEvent(
+							titleField.getText(),
+							descriptionArea.getText(),
+							placeField.getText(),
+							alarmCheckbox.getState(),
+							alarmCalendar,
+							dateStartCalendar,
+							dateEndCalendar
+							));
+					System.out.println("Event added");
+
+				}
+				else {
+					System.out.println("Title is required");
+				}
 			}
-			
 			
 		});
 		

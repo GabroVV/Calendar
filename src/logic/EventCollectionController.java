@@ -11,7 +11,7 @@ public class EventCollectionController {
 	/*
 	 * Zwraca liste zawierajaca wydarzenia odbywajacie sie w trakcie podanego dnia.
 	 */
-	EventCollection getEventsOnDate(EventCollection source, Calendar givenDate) {
+	public EventCollection getEventsOnDate(EventCollection source, Calendar givenDate) {
 		EventCollection result = new EventCollection();
 		for(int i=0; i<source.getEvents().size();i++) {
 			if(eventIsOnGivenDate(source.getEvent(i),givenDate)){

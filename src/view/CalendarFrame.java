@@ -5,11 +5,9 @@ import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
-import java.util.Calendar;
-import java.util.Locale;
+import java.util.*;
 import javax.swing.*;
 import com.toedter.calendar.JCalendar;
-
 import com.toedter.calendar.*;
 import data.EventCollection;
 public class CalendarFrame
@@ -133,7 +131,8 @@ public class CalendarFrame
 		@Override
 		public void propertyChange(PropertyChangeEvent arg0)
 		{	
-			DayViewWindow dayViewWindow = new DayViewWindow();
+			Calendar day = new GregorianCalendar(calendar.getYearChooser().getYear(),calendar.getMonthChooser().getMonth(),calendar.getDayChooser().getDay());
+			DayViewWindow dayViewWindow = new DayViewWindow(day,events);
 			dayViewWindow.frame.setVisible(true);
 		}
 	});
