@@ -42,4 +42,13 @@ public class EventCollectionController {
 		return true;
 	}
 	
+	public void removeEventsBeforeDate(EventCollection source, Calendar givenDate) {
+		for(int i=source.getEvents().size()-1; i>=0;i--)
+		{	
+			if(source.getEvents().get(i).getEndDate().before(givenDate)) {
+				source.getEvents().remove(i);
+			}
+		}
+	}
+	
 }

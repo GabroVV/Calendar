@@ -83,7 +83,7 @@ public class CalendarFrame
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 			{
-				DeleteEventWindow eventWindow = new DeleteEventWindow();
+				DeleteEventWindow eventWindow = new DeleteEventWindow(events);
 				eventWindow.frame.setVisible(true);
 			}
 	});
