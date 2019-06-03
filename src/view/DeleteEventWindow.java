@@ -3,11 +3,11 @@ package view;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
-
+import java.util.*;
 import javax.swing.*;
 import com.toedter.calendar.JDateChooser;
-
+import logic.*;
+import data.*;
 public class DeleteEventWindow
 {
 	JFrame frame;
@@ -15,9 +15,11 @@ public class DeleteEventWindow
 	JDateChooser dateChooser;
 	JComboBox<String> hour, minute;
 	JButton okButton, cancelButton;
+	EventCollection events;
 	
-	DeleteEventWindow()
+	DeleteEventWindow(EventCollection events)
 	{
+		this.events = events;
 		frame = new JFrame("Delete events");
 		frame.setBounds(300,200,400,230);
 		frame.setResizable(false);
@@ -31,7 +33,7 @@ public class DeleteEventWindow
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				// UZUPELNIC
+				okButtonHandler();
 			}
 		});
 		
@@ -90,5 +92,14 @@ public class DeleteEventWindow
 		cancelButton.setBounds(210, 150, 90, 25);
 		cancelButton.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		frame.getContentPane().add(cancelButton);
+	}
+	
+	private void okButtonHandler() {
+		Calendar date = dateChooser.getCalendar();
+		date.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)hour.getSelectedItem()));
+		date.set(Calendar.MINUTE, Integer.parseInt((String)minute.getSelectedItem()));
+		
+		EventCollectionController evc = new EventCollectionController();
+		evc.removeEventsBeforeDate(events, date);
 	}
 }
