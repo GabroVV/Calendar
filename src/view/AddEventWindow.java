@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.*;
 
 import javax.swing.BorderFactory;
@@ -87,6 +89,7 @@ public class AddEventWindow
 							dateEndCalendar
 							));
 					System.out.println("Event added");
+					//frame.dispose();
 
 				}
 				else {
@@ -157,6 +160,26 @@ public class AddEventWindow
 		descriptionArea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		descriptionArea.setBorder(BorderFactory.createLoweredBevelBorder());
 		descriptionArea.setLineWrap(true);
+		
+		descriptionArea.addKeyListener(new KeyListener()
+				{
+
+					@Override
+					public void keyPressed(KeyEvent arg0)
+					{
+						if (arg0.getKeyCode() == KeyEvent.VK_TAB) {
+							descriptionArea.transferFocusDownCycle();
+						descriptionArea.transferFocus();}
+					}
+
+					@Override
+					public void keyReleased(KeyEvent arg0) {}
+
+					@Override
+					public void keyTyped(KeyEvent arg0) {}
+			
+				});
+		
 		frame.getContentPane().add(descriptionArea);
 			
 		placeField = new TextField("");

@@ -5,6 +5,9 @@ import java.util.*;
 public class EventCollection{
 	List<MyEvent> events;
 	
+	public EventCollection(){
+		events = new ArrayList<MyEvent>();
+	}
 
 	public List<MyEvent> getEvents() {
 		return events;
@@ -14,16 +17,16 @@ public class EventCollection{
 		this.events = events;
 	}
 
-	public EventCollection(){
-		events = new ArrayList<MyEvent>();
-	}
 	
 	public boolean addEvent(MyEvent e) {
 		return events.add(e);
 	}
 	
 	public boolean removeEvent(MyEvent e) {
-		return events.remove(e);
+		if (events.size() == 0)
+			throw new IndexOutOfBoundsException();
+		else
+			return events.remove(e);
 	}
 	
 	public MyEvent getEvent(int i) {

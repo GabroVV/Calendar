@@ -1,6 +1,7 @@
 package data;
 import java.util.*;
-public class MyEvent implements Comparable<MyEvent> {
+public class MyEvent implements Comparable<MyEvent> 
+{
 	String title;
 	String description;
 	String place;
@@ -9,9 +10,7 @@ public class MyEvent implements Comparable<MyEvent> {
 	Calendar startDate;
 	Calendar endDate;
 	
-	public MyEvent() {
-		
-	}
+	public MyEvent() {}
 	
 	public MyEvent(String title, String description, String place, boolean alarmTrigger, Calendar alarmDate,
 			Calendar startDate, Calendar endDate) {
