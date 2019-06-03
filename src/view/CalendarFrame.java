@@ -8,9 +8,14 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.*;
 import javax.swing.*;
+import javax.xml.datatype.DatatypeConfigurationException;
+
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.*;
 import data.EventCollection;
+
+import logic.*;
+
 public class CalendarFrame
 {
 	JFrame frame;
@@ -113,6 +118,21 @@ public class CalendarFrame
 				File file = fileChooser.getSelectedFile();
 			}
 		}
+	});
+	
+	saveXML.addActionListener(new ActionListener()
+	{
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				try
+				{
+					logic.OperationsXML.saveToXML(events);
+				} catch (DatatypeConfigurationException e)
+				{
+					e.printStackTrace();
+				}
+			}
 	});
 	
 	saveCSV.addActionListener(new ActionListener()
@@ -225,12 +245,5 @@ public class CalendarFrame
 		calendar.getMonthChooser().setFont(new Font("Times New Roman", Font.BOLD, 20));
 		calendar.getYearChooser().setFont(new Font("Times New Roman", Font.BOLD, 20));
 		frame.add(calendar);
-	}
-	
-	public boolean doubleClick(MouseEvent event)
-	{
-		if (event.getClickCount() == 2)
-			return true;
-		else return false;
 	}
 }
