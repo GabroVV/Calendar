@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.*;
+import logic.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -15,7 +16,7 @@ public class CalendarFrame
 	JFrame frame;
 	JMenuBar menuBar;
 	JMenu menu, settings, help, saveTo, loadFrom;
-	JMenuItem addEvent, deleteEvents, exit, fontColor, authors, aboutProgram, saveXML, saveDatabase, loadXML, loadDatabase;
+	JMenuItem addEvent, deleteEvents, exit, fontColor, authors, aboutProgram, saveXML, saveDatabase,saveCSV, loadXML, loadDatabase;
 	static JCalendar calendar;
 	ImageIcon icon;
 	EventCollection events;
@@ -114,6 +115,17 @@ public class CalendarFrame
 		}
 	});
 	
+	saveCSV.addActionListener(new ActionListener()
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0)
+		{
+			ExportToCSV csvController = new ExportToCSV(events);
+			csvController.execute();
+			JOptionPane.showMessageDialog(frame, "Events saved to .csv file ready to be imported to Google Calendar","Save to CSV",JOptionPane.INFORMATION_MESSAGE);
+		}
+	});
+	
 	/*calendar.addMouseListener(new MouseAdapter()
 			{
 				@Override
@@ -160,7 +172,8 @@ public class CalendarFrame
 		saveTo = new JMenu("Save to");
 		saveXML = new JMenuItem("XML");
 		saveDatabase = new JMenuItem("database");
-		
+		saveCSV = new JMenuItem("CSV");
+
 		loadFrom = new JMenu("Load from");
 		loadXML = new JMenuItem("XML");
 		loadDatabase = new JMenuItem("database");
@@ -173,6 +186,7 @@ public class CalendarFrame
 		menu.add(saveTo);
 		saveTo.add(saveXML);
 		saveTo.add(saveDatabase);
+		saveTo.add(saveCSV);
 		menu.add(loadFrom);
 		loadFrom.add(loadXML);
 		loadFrom.add(loadDatabase);
