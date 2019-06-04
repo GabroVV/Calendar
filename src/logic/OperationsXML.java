@@ -2,7 +2,9 @@ package logic;
 
 import org.w3c.dom.*;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.xml.bind.DatatypeConverter;
@@ -108,7 +110,7 @@ public class OperationsXML
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource domSource = new DOMSource(document);
-			StreamResult streamResult = new StreamResult(new File("eventsXML.xml"));
+			StreamResult streamResult = new StreamResult(new File("events.xml"));
 			transformer.transform(domSource, streamResult);
 			
 			System.out.println("XML file created");
@@ -120,6 +122,68 @@ public class OperationsXML
 		catch (TransformerException te)
 		{
 			te.printStackTrace();
+		}
+	}
+	
+	
+	public static void loadFromXML(EventCollection events)
+	{
+		try
+		{
+			File xmlFile = new File("events.xml");
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document document = db.parse(xmlFile);
+			document.getDocumentElement().normalize();
+			
+			NodeList nList = document.getElementsByTagName("event");
+			
+			for (int i=0; i<nList.getLength(); i++)
+			{
+				Node node = nList.item(i);
+				
+				if (node.getNodeType() == Node.ELEMENT_NODE)
+				{
+					Element element = (Element) node;
+
+					MyEvent myEvent = new MyEvent();
+					myEvent.setTitle(element.getElementsByTagName("eventTitle").item(0).getTextContent());
+					myEvent.setDescription(element.getElementsByTagName("eventDescription").item(0).getTextContent());
+					myEvent.setPlace(element.getElementsByTagName("eventPlace").item(0).getTextContent());
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+					Date date = sdf.parse(element.getElementsByTagName("eventStartDate").item(0).getTextContent());
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTime(date);
+					myEvent.setStartDate(calendar);
+					
+					Date date2 = sdf.parse(element.getElementsByTagName("eventEndDate").item(0).getTextContent());
+					Calendar calendar2 = Calendar.getInstance();
+					calendar2.setTime(date2);
+					myEvent.setEndDate(calendar2);
+					
+					if (element.getAttribute("alarmSet").equals("Yes"))
+					{
+						myEvent.setAlarmTrigger(true);
+						Date date3 = sdf.parse(element.getElementsByTagName("alarmDate").item(0).getTextContent());
+						Calendar calendar3 = Calendar.getInstance();
+						calendar3.setTime(date3);
+						myEvent.setAlarmDate(calendar3);
+					}
+					else 
+						{
+							myEvent.setAlarmTrigger(false);
+							myEvent.setAlarmDate(null);
+						}
+					
+					
+					events.addEvent(myEvent);
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
 		}
 	}
 }

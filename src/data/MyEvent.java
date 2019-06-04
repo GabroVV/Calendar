@@ -73,11 +73,17 @@ public class MyEvent implements Comparable<MyEvent>
 	}
 
 	@Override
-	public String toString() {
-		return "MyEvent [title=" + title + ", description=" + description + ", place=" + place + ", alarmTrigger="
-				+ alarmTrigger + ", alarmDate=" + (alarmDate.get(Calendar.MONTH)+1) +"." + alarmDate.get(Calendar.DAY_OF_MONTH) +"." + alarmDate.get(Calendar.YEAR) +" " + alarmDate.get(Calendar.HOUR_OF_DAY)  +":" + alarmDate.get(Calendar.MINUTE) +
+	public String toString() 
+	{
+		String tmp;
+		tmp = "MyEvent [title=" + title + ", description=" + description + ", place=" + place +
 				", startDate=" + (startDate.get(Calendar.MONTH)+1) +"." + startDate.get(Calendar.DAY_OF_MONTH) +"." + startDate.get(Calendar.YEAR) +" " + startDate.get(Calendar.HOUR_OF_DAY)  +":" + startDate.get(Calendar.MINUTE) +
-				", endDate=" + (endDate.get(Calendar.MONTH)+1) +"." + endDate.get(Calendar.DAY_OF_MONTH) +"." + endDate.get(Calendar.YEAR) +" " + endDate.get(Calendar.HOUR_OF_DAY)  +":" + endDate.get(Calendar.MINUTE) + "]";
+				", endDate=" + (endDate.get(Calendar.MONTH)+1) +"." + endDate.get(Calendar.DAY_OF_MONTH) +"." + endDate.get(Calendar.YEAR) +" " + endDate.get(Calendar.HOUR_OF_DAY)  +":" + endDate.get(Calendar.MINUTE) + ", alarmTrigger=" + alarmTrigger;
+		
+		if (alarmTrigger)
+			tmp += ", alarmDate=" + (alarmDate.get(Calendar.MONTH)+1) +"." + alarmDate.get(Calendar.DAY_OF_MONTH) +"." + alarmDate.get(Calendar.YEAR) +" " + alarmDate.get(Calendar.HOUR_OF_DAY)  +":" + alarmDate.get(Calendar.MINUTE);
+			
+		return tmp + "]";
 	}
 	
 }

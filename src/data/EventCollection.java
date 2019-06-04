@@ -32,4 +32,15 @@ public class EventCollection{
 	public MyEvent getEvent(int i) {
 		return events.get(i);
 	}
+	
+	@Override
+	public String toString()
+	{
+		String tmp = "";
+		
+		for (int i=0; i<events.size(); i++)
+			tmp += events.get(i).toString();
+		
+		return tmp;
+	}
 }

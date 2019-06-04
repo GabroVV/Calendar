@@ -109,14 +109,8 @@ public class CalendarFrame
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-			JFileChooser fileChooser = new JFileChooser(".");
-
-			int returnVal = fileChooser.showOpenDialog(frame);
+				logic.OperationsXML.loadFromXML(events);
 			
-			if (returnVal == JFileChooser.APPROVE_OPTION)
-			{
-				File file = fileChooser.getSelectedFile();
-			}
 		}
 	});
 	

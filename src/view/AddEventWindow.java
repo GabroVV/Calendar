@@ -167,11 +167,9 @@ public class AddEventWindow
 					@Override
 					public void keyPressed(KeyEvent arg0)
 					{
-						if (arg0.getKeyCode() == KeyEvent.VK_TAB) {
-							descriptionArea.transferFocusDownCycle();
-						descriptionArea.transferFocus();}
-					}
-
+						if (arg0.getKeyCode() == KeyEvent.VK_TAB)
+							descriptionArea.transferFocus();}
+					
 					@Override
 					public void keyReleased(KeyEvent arg0) {}
 
