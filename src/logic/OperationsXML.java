@@ -171,11 +171,10 @@ public class OperationsXML
 						myEvent.setAlarmDate(calendar3);
 					}
 					else 
-						{
-							myEvent.setAlarmTrigger(false);
-							myEvent.setAlarmDate(null);
-						}
-					
+					{
+						myEvent.setAlarmTrigger(false);
+						myEvent.setAlarmDate(null);
+					}
 					
 					events.addEvent(myEvent);
 				}

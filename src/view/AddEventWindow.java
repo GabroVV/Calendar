@@ -89,8 +89,7 @@ public class AddEventWindow
 							dateEndCalendar
 							));
 					System.out.println("Event added");
-					//frame.dispose();
-
+					frame.dispose();
 				}
 				else {
 					System.out.println("Title is required");
@@ -155,7 +154,7 @@ public class AddEventWindow
 		titleField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		frame.getContentPane().add(titleField);
 		
-		descriptionArea = new JTextArea("");
+		descriptionArea = new JTextArea();
 		descriptionArea.setBounds(20, 130, 500, 96);
 		descriptionArea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		descriptionArea.setBorder(BorderFactory.createLoweredBevelBorder());

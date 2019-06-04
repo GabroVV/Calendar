@@ -21,7 +21,7 @@ public class CalendarFrame
 	JFrame frame;
 	JMenuBar menuBar;
 	JMenu menu, settings, help, saveTo, loadFrom;
-	JMenuItem addEvent, deleteEvents, exit, fontColor, authors, aboutProgram, saveXML, saveDatabase,saveCSV, loadXML, loadDatabase;
+	JMenuItem addEvent, deleteEvents, showEvents, exit, fontColor, authors, aboutProgram, saveXML, saveDatabase,saveCSV, loadXML, loadDatabase;
 	static JCalendar calendar;
 	ImageIcon icon;
 	EventCollection events;
@@ -94,6 +94,16 @@ public class CalendarFrame
 			}
 	});
 	
+	showEvents.addActionListener(new ActionListener()
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0)
+		{
+			AllEventsWindow eventsWindow = new AllEventsWindow(events);
+			eventsWindow.frame.setVisible(true);
+		}
+	});
+	
 	fontColor.addActionListener(new ActionListener()
 			{
 				@Override
@@ -109,8 +119,8 @@ public class CalendarFrame
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-				logic.OperationsXML.loadFromXML(events);
-			
+			logic.OperationsXML.loadFromXML(events);
+			JOptionPane.showMessageDialog(frame, "Events imported succesfully", "File loaded", JOptionPane.INFORMATION_MESSAGE);
 		}
 	});
 	
@@ -182,6 +192,7 @@ public class CalendarFrame
 		menu = new JMenu("Menu");
 		addEvent = new JMenuItem("Add event");
 		deleteEvents = new JMenuItem("Delete events");
+		showEvents = new JMenuItem("Show events");
 		
 		saveTo = new JMenu("Save to");
 		saveXML = new JMenuItem("XML");
@@ -196,6 +207,7 @@ public class CalendarFrame
 		
 		menu.add(addEvent);
 		menu.add(deleteEvents);
+		menu.add(showEvents);
 		menu.addSeparator();
 		menu.add(saveTo);
 		saveTo.add(saveXML);

@@ -43,7 +43,7 @@ public class DayViewWindow
 		}
 		
 		
-		list = new JList(eventNames);
+		list = new JList<String>(eventNames);
 		list.setBounds(20, 90, 435, 330);
 		list.setBorder(BorderFactory.createLoweredBevelBorder());
 		list.setVisible(true);
