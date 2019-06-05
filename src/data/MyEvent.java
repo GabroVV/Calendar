@@ -69,12 +69,12 @@ public class MyEvent implements Comparable<MyEvent>
 	@Override
 	public int compareTo(MyEvent e) {
 		
-		return startDate.compareTo(endDate);
+		return startDate.compareTo(e.getStartDate());
 	}
 	
 	public static String displayDate(Calendar date)
 	{
-		return (date.get(Calendar.MONTH)+1) +"." + date.get(Calendar.DAY_OF_MONTH) +"." + date.get(Calendar.YEAR) +" " + date.get(Calendar.HOUR_OF_DAY)  +":" + date.get(Calendar.MINUTE);
+		return  date.get(Calendar.DAY_OF_MONTH)+ "." + (date.get(Calendar.MONTH)+1) + "." + date.get(Calendar.YEAR) +" " + date.get(Calendar.HOUR_OF_DAY)  +":" + date.get(Calendar.MINUTE);
 	}
 
 	@Override

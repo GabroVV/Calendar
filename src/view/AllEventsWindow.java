@@ -7,6 +7,7 @@ import java.util.*;
 import javax.swing.*;
 
 import data.EventCollection;
+import logic.EventCollectionController;
 
 public class AllEventsWindow
 {
@@ -24,6 +25,8 @@ public class AllEventsWindow
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		
+		EventCollectionController.sortEventsByDate(events);
+		
 		eventDetails = new Vector<String>();
 		eventToFilter = new Vector<String>();
 		
@@ -39,6 +42,8 @@ public class AllEventsWindow
 			events.getEvent(i).getTitle() + events.getEvent(i).getDescription() +
 			events.getEvent(i).getPlace());
 		}
+		
+		
 
 		
 		eventsArea = new JTextArea();
@@ -110,5 +115,7 @@ public class AllEventsWindow
 		OK.setBounds(185, 20, 55, 30);
 		OK.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		frame.getContentPane().add(OK);
+		
+		
 	}
 }

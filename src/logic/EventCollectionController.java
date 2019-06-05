@@ -4,7 +4,7 @@ import data.*;
 
 public class EventCollectionController {
 	
-	public void sortEventsByDate(EventCollection collection) {
+	public static void sortEventsByDate(EventCollection collection) {
 		Collections.sort(collection.getEvents());
 	}
 	
