@@ -191,12 +191,16 @@ public class AddEventWindow
 		dateStartChooser.setBounds(130, 375, 140, 30);
 		dateStartChooser.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		dateStartChooser.setLocale(new Locale("English"));
+		JTextFieldDateEditor editor = (JTextFieldDateEditor) dateStartChooser.getDateEditor();
+		editor.setEditable(false);
 		frame.getContentPane().add(dateStartChooser);
 		
 		dateEndChooser = new JDateChooser();
 		dateEndChooser.setBounds(130, 420, 140, 30);
 		dateEndChooser.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		dateEndChooser.setLocale(new Locale("English"));
+		JTextFieldDateEditor editor2 = (JTextFieldDateEditor) dateEndChooser.getDateEditor();
+		editor2.setEditable(false);
 		frame.getContentPane().add(dateEndChooser);
 		
 		startHour = new JComboBox<String>();
