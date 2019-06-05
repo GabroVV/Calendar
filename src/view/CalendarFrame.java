@@ -150,18 +150,6 @@ public class CalendarFrame
 		}
 	});
 	
-	/*calendar.addMouseListener(new MouseAdapter()
-			{
-				@Override
-				public void mouseClicked(MouseEvent event)
-				{
-					//if (event.getButton() == MouseEvent.BUTTON1)
-					{
-					
-					}
-				}
-			});*/
-	
 	calendar.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener()
 	{
 		@Override

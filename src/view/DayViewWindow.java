@@ -4,8 +4,10 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import data.*;
 import logic.*;
 public class DayViewWindow
@@ -64,5 +66,29 @@ public class DayViewWindow
 				frame.dispose();
 			}
 		});
+		
+		list.addMouseListener(new AdaptMouseListener()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
+				{
+					
+				}
+			}
+		});
+		
+		list.addListSelectionListener(new ListSelectionListener()
+		{
+			@Override
+			public void valueChanged(ListSelectionEvent arg0)
+			{
+				EventDetailsWindow window = new EventDetailsWindow(eventsOnDay, list);
+				window.frame.setVisible(true);
+			}
+		});
+		
+		
 	}
 }
