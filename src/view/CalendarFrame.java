@@ -155,12 +155,12 @@ public class CalendarFrame
 		@Override
 		public void propertyChange(PropertyChangeEvent arg0)
 		{	
+			
 			Calendar day = new GregorianCalendar(calendar.getYearChooser().getYear(),calendar.getMonthChooser().getMonth(),calendar.getDayChooser().getDay());
 			DayViewWindow dayViewWindow = new DayViewWindow(day,events);
 			dayViewWindow.frame.setVisible(true);
 		}
 	});
-	
 	
 	frame.setVisible(true);
 	}	// end of constructor
@@ -238,6 +238,7 @@ public class CalendarFrame
 		calendar.setLocale(new Locale("English"));
 		calendar.getMonthChooser().setFont(new Font("Times New Roman", Font.BOLD, 20));
 		calendar.getYearChooser().setFont(new Font("Times New Roman", Font.BOLD, 20));
+		calendar.getDayChooser().setAlwaysFireDayProperty(true);
 		frame.add(calendar);
 	}
 }

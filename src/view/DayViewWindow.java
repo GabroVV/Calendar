@@ -79,16 +79,25 @@ public class DayViewWindow
 			}
 		});
 		
+		
+		
 		list.addListSelectionListener(new ListSelectionListener()
 		{
 			@Override
 			public void valueChanged(ListSelectionEvent arg0)
 			{
-				EventDetailsWindow window = new EventDetailsWindow(eventsOnDay, list);
-				window.frame.setVisible(true);
+				if(arg0.getValueIsAdjusting())
+				{
+					
+					EventDetailsWindow window = new EventDetailsWindow(eventsOnDay, list);
+					window.frame.setVisible(true);
+					try
+					{
+					list.clearSelection();
+					}
+					catch (ArrayIndexOutOfBoundsException e) {}
+				}
 			}
 		});
-		
-		
 	}
 }
