@@ -260,6 +260,8 @@ public class AddEventWindow
 		alarmChooser.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		alarmChooser.setLocale(new Locale("English"));
 		alarmChooser.setEnabled(false);
+		JTextFieldDateEditor editor3 = (JTextFieldDateEditor) alarmChooser.getDateEditor();
+		editor3.setEditable(false);
 		frame.getContentPane().add(alarmChooser);
 		
 		alarmHour = new JComboBox<String>();
