@@ -16,7 +16,7 @@ public class EventDetailsWindow
 	JFrame frame;
 	JLabel titleText, descriptionText, placeText, startDateText, stopDateText;
 	TextField titleContent, descriptionContent, placeContent, startDateContent, stopDateContent;
-	JButton close;
+	JButton close, delete;
 	
 	EventDetailsWindow(EventCollection eventsOnDay, JList<String> list)
 	{
@@ -97,9 +97,14 @@ public class EventDetailsWindow
 		frame.getContentPane().add(stopDateContent);
 		
 		close = new JButton("Close");
-		close.setBounds(320, 462, 115, 35);
+		close.setBounds(200, 462, 115, 35);
 		close.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		frame.getContentPane().add(close);
+		
+		delete = new JButton("Delete event");
+		delete.setBounds(400, 462, 180, 35);
+		delete.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		frame.getContentPane().add(delete);
 		
 		close.addActionListener(new ActionListener()
 		{
@@ -107,6 +112,23 @@ public class EventDetailsWindow
 			public void actionPerformed(ActionEvent arg0)
 			{
 				frame.dispose();
+			}
+		});
+		
+		delete.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				int selectedOption = JOptionPane.showConfirmDialog(frame, "Are you sure?","Exit",JOptionPane.YES_NO_OPTION);
+				if (selectedOption == JOptionPane.YES_OPTION)
+					{
+						JOptionPane.showMessageDialog(frame, "Event has been deleted","",JOptionPane.INFORMATION_MESSAGE);
+						
+						//eventsOnDay.removeEvent(eventsOnDay.getEvent(list.getSelectedIndex()));
+						
+						frame.dispose();
+					}
 			}
 		});
 	}

@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import javax.xml.bind.DatatypeConverter;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -54,7 +52,6 @@ public class OperationsXML
 				event.appendChild(eventPlace);
 				
 				// SAVING DATE TO XML
-				// Jak nie zadzia³a wczytywanie to date podzieliæ na dzien, miesiac itd.
 				{
 				eventStartDate = document.createElement("eventStartDate");
 				

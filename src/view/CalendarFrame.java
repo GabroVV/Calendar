@@ -5,16 +5,11 @@ import logic.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
 import java.util.*;
 import javax.swing.*;
 import javax.xml.datatype.DatatypeConfigurationException;
-
 import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.*;
 import data.EventCollection;
-
-import logic.*;
 
 public class CalendarFrame
 {
