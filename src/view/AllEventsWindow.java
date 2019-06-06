@@ -115,7 +115,5 @@ public class AllEventsWindow
 		OK.setBounds(185, 20, 55, 30);
 		OK.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		frame.getContentPane().add(OK);
-		
-		
 	}
 }

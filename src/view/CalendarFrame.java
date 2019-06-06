@@ -7,6 +7,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.xml.datatype.DatatypeConfigurationException;
 import com.toedter.calendar.JCalendar;
 import data.EventCollection;
@@ -20,6 +21,7 @@ public class CalendarFrame
 	static JCalendar calendar;
 	ImageIcon icon;
 	EventCollection events;
+	Timer timer;
 	
 	
 	public CalendarFrame(EventCollection events)
@@ -37,6 +39,7 @@ public class CalendarFrame
 	createMenuBar();
 	createMenuItems();
 	addToMenuBar();
+	
 	
 	// ACTIONS
 	authors.addActionListener(new ActionListener()
@@ -116,6 +119,10 @@ public class CalendarFrame
 		{
 			logic.OperationsXML.loadFromXML(events);
 			JOptionPane.showMessageDialog(frame, "Events imported succesfully", "File loaded", JOptionPane.INFORMATION_MESSAGE);
+		
+		
+			AlarmWindow window = new AlarmWindow();
+			window.frame.setVisible(true);
 		}
 	});
 	
@@ -157,19 +164,20 @@ public class CalendarFrame
 		}
 	});
 	
+	addTimer();
 	frame.setVisible(true);
 	}	// end of constructor
 
 	
 	
-	public void createMenuBar()
+	private void createMenuBar()
 	{
 		menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
 	}
 	
-	public void createMenuItems()
+	private void createMenuItems()
 	{
 		// MENU BAR
 		menu = new JMenu("Menu");
@@ -219,14 +227,14 @@ public class CalendarFrame
 		
 	}
 	
-	public void addToMenuBar()
+	private void addToMenuBar()
 	{
 		menuBar.add(menu);
 		menuBar.add(settings);
 		menuBar.add(help);
 	}
 	
-	public void addCalendar()
+	private void addCalendar()
 	{
 		calendar = new JCalendar();
 		calendar.setFont(new Font("Times New Roman", Font.BOLD, 26));
@@ -235,5 +243,31 @@ public class CalendarFrame
 		calendar.getYearChooser().setFont(new Font("Times New Roman", Font.BOLD, 20));
 		calendar.getDayChooser().setAlwaysFireDayProperty(true);
 		frame.add(calendar);
+	}
+	
+	private void addTimer()
+	{
+		timer = new Timer(60000, new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				checkTimer();
+			}
+		});
+		timer.start();
+	}
+	
+	private void checkTimer()
+	
+	{
+		for (int i=0; i<events.getEvents().size(); i++)
+		{
+			if (events.getEvent(i).isAlarmTrigger() && (events.getEvent(i).getAlarmDate().getTime().getTime() - new Date().getTime()) < 60000)
+			{
+				AlarmWindow window = new AlarmWindow();
+				window.frame.setVisible(true);
+			}
+		}
 	}
 }

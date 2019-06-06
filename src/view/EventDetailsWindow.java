@@ -96,15 +96,7 @@ public class EventDetailsWindow
 		stopDateContent.setFocusable(false);
 		frame.getContentPane().add(stopDateContent);
 		
-		close = new JButton("Close");
-		close.setBounds(200, 462, 115, 35);
-		close.setFont(new Font("Times New Roman", Font.BOLD, 22));
-		frame.getContentPane().add(close);
-		
-		delete = new JButton("Delete event");
-		delete.setBounds(400, 462, 180, 35);
-		delete.setFont(new Font("Times New Roman", Font.BOLD, 22));
-		frame.getContentPane().add(delete);
+		addButtons();
 		
 		close.addActionListener(new ActionListener()
 		{
@@ -123,13 +115,25 @@ public class EventDetailsWindow
 				int selectedOption = JOptionPane.showConfirmDialog(frame, "Are you sure?","Exit",JOptionPane.YES_NO_OPTION);
 				if (selectedOption == JOptionPane.YES_OPTION)
 					{
-						JOptionPane.showMessageDialog(frame, "Event has been deleted","",JOptionPane.INFORMATION_MESSAGE);
-						
 						//eventsOnDay.removeEvent(eventsOnDay.getEvent(list.getSelectedIndex()));
 						
+						JOptionPane.showMessageDialog(frame, "Event has been deleted","",JOptionPane.INFORMATION_MESSAGE);
 						frame.dispose();
 					}
 			}
 		});
+	}
+	
+	private void addButtons()
+	{
+		close = new JButton("Close");
+		close.setBounds(200, 462, 115, 35);
+		close.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		frame.getContentPane().add(close);
+		
+		delete = new JButton("Delete event");
+		delete.setBounds(400, 462, 180, 35);
+		delete.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		frame.getContentPane().add(delete);
 	}
 }
