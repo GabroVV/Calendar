@@ -5,6 +5,7 @@ import logic.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.sql.SQLException;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
@@ -137,6 +138,31 @@ public class CalendarFrame
 				}
 			}
 	});
+	
+	saveDatabase.addActionListener(new ActionListener()
+	{
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				OperationsDatabase odb = new OperationsDatabase("root","Zipper88@");
+				try {
+					odb.getConnection();
+					odb.clearDatabase();
+					for(int i =0;i<events.getEvents().size();i++)
+					{
+						odb.addEventToDB(events.getEvent(i));
+					}
+				}
+				catch(SQLException ex){
+					System.out.println(ex);
+				}
+				finally {
+					odb.closeConnection();
+				}
+				
+			}
+	});
+	
 	
 	saveCSV.addActionListener(new ActionListener()
 	{
