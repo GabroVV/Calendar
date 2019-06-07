@@ -44,8 +44,6 @@ public class AllEventsWindow
 		}
 		
 		
-
-		
 		eventsArea = new JTextArea();
 		eventsArea.setBounds(20, 70, 400, 440);
 		eventsArea.setFont(new Font("Times New Roman", Font.PLAIN, 20));

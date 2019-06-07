@@ -20,6 +20,8 @@ public class DayViewWindow
 	Calendar day;
 	EventCollection events,eventsOnDay;
 	EventCollectionController evc= new EventCollectionController();
+	JScrollPane scroll;
+	
 	DayViewWindow(Calendar day,EventCollection events)
 	{
 		this.day= day;
@@ -51,11 +53,15 @@ public class DayViewWindow
 		list.setVisible(true);
 		frame.getContentPane().add(list);
 		
+		scroll = new JScrollPane(list);
+		scroll.setBounds(20, 90, 435, 330);
+		scroll.setVisible(true);
+		frame.getContentPane().add(scroll);
+		
 		OK = new JButton("OK");
 		OK.setBounds(188, 445, 100, 30);
 		OK.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		frame.getContentPane().add(OK);
-		
 		
 		
 		OK.addActionListener(new ActionListener()

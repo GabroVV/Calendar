@@ -263,6 +263,7 @@ public class CalendarFrame
 			{
 				AlarmWindow window = new AlarmWindow(events.getEvent(i));
 				window.frame.setVisible(true);
+				Toolkit.getDefaultToolkit().beep();
 			}
 		}
 	}
