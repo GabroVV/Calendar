@@ -119,10 +119,6 @@ public class CalendarFrame
 		{
 			logic.OperationsXML.loadFromXML(events);
 			JOptionPane.showMessageDialog(frame, "Events imported succesfully", "File loaded", JOptionPane.INFORMATION_MESSAGE);
-		
-		
-			AlarmWindow window = new AlarmWindow();
-			window.frame.setVisible(true);
 		}
 	});
 	
@@ -265,7 +261,7 @@ public class CalendarFrame
 		{
 			if (events.getEvent(i).isAlarmTrigger() && (events.getEvent(i).getAlarmDate().getTime().getTime() - new Date().getTime()) < 60000)
 			{
-				AlarmWindow window = new AlarmWindow();
+				AlarmWindow window = new AlarmWindow(events.getEvent(i));
 				window.frame.setVisible(true);
 			}
 		}

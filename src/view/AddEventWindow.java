@@ -64,35 +64,70 @@ public class AddEventWindow
 				Calendar dateStartCalendar = dateStartChooser.getCalendar();
 				Calendar dateEndCalendar = dateEndChooser.getCalendar();
 
-				
-				
-				dateStartCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)startHour.getSelectedItem()));
-				dateStartCalendar.set(Calendar.MINUTE, Integer.parseInt((String)startMinute.getSelectedItem()));
-				
-				dateEndCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)endHour.getSelectedItem()));
-				dateEndCalendar.set(Calendar.MINUTE, Integer.parseInt((String)endMinute.getSelectedItem()));
-				Calendar alarmCalendar = null;
-				
-				if(alarmCheckbox.getState() == true) {
-					alarmCalendar = alarmChooser.getCalendar();
-					alarmCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)alarmHour.getSelectedItem()));
-					alarmCalendar.set(Calendar.MINUTE, Integer.parseInt((String)alarmMinute.getSelectedItem()));
+				try
+				{
+					if (dateStartChooser.getDate() == null || dateEndChooser.getDate() == null)
+					{
+						throw new DateException("Start and end dates must be set");
+					}
+					else
+					{
+						if (dateStartChooser.getDate().after(dateEndChooser.getDate()))
+						{
+							throw new DateException("Event must begin before its end");
+						}
+						else if (Math.abs(dateStartChooser.getDate().getTime() - dateEndChooser.getDate().getTime()) < 3600000)
+						{
+							if (!sameDateHourCheck(
+									Integer.parseInt((String)startHour.getSelectedItem()),
+									Integer.parseInt((String)startMinute.getSelectedItem()), 
+									Integer.parseInt((String)endHour.getSelectedItem()), 
+									Integer.parseInt((String)endMinute.getSelectedItem())
+								))
+										throw new DateException("Event must begin before its end");
+							
+							else
+							{
+								dateStartCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)startHour.getSelectedItem()));
+								dateStartCalendar.set(Calendar.MINUTE, Integer.parseInt((String)startMinute.getSelectedItem()));
+								
+								dateEndCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)endHour.getSelectedItem()));
+								dateEndCalendar.set(Calendar.MINUTE, Integer.parseInt((String)endMinute.getSelectedItem()));
+								Calendar alarmCalendar = null;
+								
+								if(alarmCheckbox.getState() == true) 
+								{
+									alarmCalendar = alarmChooser.getCalendar();
+									alarmCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)alarmHour.getSelectedItem()));
+									alarmCalendar.set(Calendar.MINUTE, Integer.parseInt((String)alarmMinute.getSelectedItem()));
+								}
+						
+
+								if(titleField.getText().isEmpty() == false) 
+								{
+									events.addEvent(new MyEvent(
+											titleField.getText(),
+											descriptionArea.getText(),
+											placeField.getText(),
+											alarmCheckbox.getState(),
+											alarmCalendar,
+											dateStartCalendar,
+											dateEndCalendar
+											));
+									System.out.println("Event added");
+									frame.dispose();
+								}
+								else 
+								{
+									System.out.println("Title is required");
+								}
+							}
+						}
+					}
 				}
-				if(titleField.getText().isEmpty() == false) {
-					events.addEvent(new MyEvent(
-							titleField.getText(),
-							descriptionArea.getText(),
-							placeField.getText(),
-							alarmCheckbox.getState(),
-							alarmCalendar,
-							dateStartCalendar,
-							dateEndCalendar
-							));
-					System.out.println("Event added");
-					frame.dispose();
-				}
-				else {
-					System.out.println("Title is required");
+				catch (DateException e)
+				{
+					System.out.println(e.getMessage());
 				}
 			}
 			
@@ -302,5 +337,16 @@ public class AddEventWindow
 		frame.getContentPane().add(cancelButton);
 	}
 	
-	
+	private boolean sameDateHourCheck(int startHour, int startMinute, int endHour, int endMinute)
+	{
+		if (startHour == endHour)
+		{
+			if (startMinute <= endMinute)
+				return true;
+			else return false;
+		}
+		else if (startHour < endHour)
+			return true;
+		else return false;
+	}
 }

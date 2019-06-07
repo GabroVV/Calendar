@@ -4,8 +4,8 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
+import data.MyEvent;
 
 public class AlarmWindow
 {
@@ -13,8 +13,9 @@ public class AlarmWindow
 	JLabel text;
 	JTextArea eventArea;
 	JButton OK;
+	JScrollPane scroll;
 	
-	AlarmWindow()
+	AlarmWindow(MyEvent event)
 	{
 		frame = new JFrame("Alarm trigerred");
 		frame.setBounds(300,200,450,450);
@@ -29,12 +30,22 @@ public class AlarmWindow
 		
 		eventArea = new JTextArea();
 		eventArea.setBounds(20, 70, 400, 290);
-		eventArea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		eventArea.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		eventArea.setBorder(BorderFactory.createLoweredBevelBorder());
 		eventArea.setLineWrap(true);
 		eventArea.setFocusable(false);
 		eventArea.scrollRectToVisible(new Rectangle(20,100));
 		frame.getContentPane().add(eventArea);
+		scroll = new JScrollPane(eventArea);
+		scroll.setBounds(20, 70, 400, 290);
+		scroll.setVisible(true);
+		frame.getContentPane().add(scroll);
+		
+	
+		
+		eventArea.append("Title: " + event.getTitle() + "\nDescription: " + event.getDescription() +
+						"\nPlace: " + event.getPlace() + "\nStarting: " + MyEvent.displayDate(event.getStartDate()) +
+						"\nEnding: " + MyEvent.displayDate(event.getEndDate()));
 		
 		OK = new JButton("OK");
 		OK.setBounds(185, 375, 70, 30);
