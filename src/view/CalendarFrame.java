@@ -22,6 +22,7 @@ public class CalendarFrame
 	ImageIcon icon;
 	EventCollection events;
 	Timer timer;
+	boolean keyboardCheck = false;
 	
 	
 	public CalendarFrame(EventCollection events)
@@ -153,13 +154,84 @@ public class CalendarFrame
 		@Override
 		public void propertyChange(PropertyChangeEvent arg0)
 		{	
-			
-			Calendar day = new GregorianCalendar(calendar.getYearChooser().getYear(),calendar.getMonthChooser().getMonth(),calendar.getDayChooser().getDay());
-			DayViewWindow dayViewWindow = new DayViewWindow(day,events);
-			dayViewWindow.frame.setVisible(true);
+			if (keyboardCheck) 
+			{
+				keyboardCheck = false;
+				Calendar day = new GregorianCalendar(calendar.getYearChooser().getYear(),calendar.getMonthChooser().getMonth(),calendar.getDayChooser().getDay());
+				DayViewWindow dayViewWindow = new DayViewWindow(day,events);
+				dayViewWindow.frame.setVisible(true);
+			}
 		}
 	});
 	
+
+	 JPanel jPanel = calendar.getDayChooser().getDayPanel();
+     Component[] component = jPanel.getComponents();
+     for (int i = 0; i < component.length; i++) 
+     {
+         component[i].addMouseListener(new MouseAdapter() 
+         {
+             @Override
+             public void mousePressed(MouseEvent e) 
+             {
+             super.mouseEntered(e);
+             keyboardCheck = true;
+            }
+
+             @Override
+             public void mouseExited(MouseEvent e) 
+             {
+             super.mouseExited(e);
+             keyboardCheck = false;
+             }
+         });
+ 
+     component[i].addKeyListener(new KeyAdapter() 
+     {
+         @Override
+         public void keyReleased(KeyEvent keyEvent) 
+         {
+             super.keyReleased(keyEvent);
+             if (keyEvent.getKeyCode() == 10)
+             {
+            	 Calendar day = new GregorianCalendar(calendar.getYearChooser().getYear(),calendar.getMonthChooser().getMonth(),calendar.getDayChooser().getDay());
+            	 DayViewWindow window = new DayViewWindow(day,events);
+            	 window.frame.setVisible(true);
+             }
+            	 
+             
+             super.keyPressed(keyEvent);
+
+         }
+
+         @Override
+         public void keyPressed(KeyEvent keyEvent) 
+         {
+             if (keyEvent.getKeyCode() == 10) 
+             {
+            	 Calendar day = new GregorianCalendar(calendar.getYearChooser().getYear(),calendar.getMonthChooser().getMonth(),calendar.getDayChooser().getDay());
+            	 DayViewWindow window = new DayViewWindow(day, events);
+            	 window.frame.setVisible(true);
+             }
+             super.keyPressed(keyEvent);
+
+         }
+
+         @Override
+         public void keyTyped(KeyEvent keyEvent) 
+         {
+             if (keyEvent.getKeyCode() == 10) 
+             {
+            	 Calendar day = new GregorianCalendar(calendar.getYearChooser().getYear(),calendar.getMonthChooser().getMonth(),calendar.getDayChooser().getDay());
+            	 DayViewWindow window = new DayViewWindow(day, events);
+            	 window.frame.setVisible(true);
+             }
+             super.keyTyped(keyEvent);
+         }
+     });
+ }
+     
+     
 	addTimer();
 	frame.setVisible(true);
 	}	// end of constructor
