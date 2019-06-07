@@ -144,7 +144,7 @@ public class CalendarFrame
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				OperationsDatabase odb = new OperationsDatabase("root","Zipper88@");
+				/*OperationsDatabase odb = new OperationsDatabase("root","Zipper88@");
 				try {
 					odb.getConnection();
 					odb.clearDatabase();
@@ -159,7 +159,9 @@ public class CalendarFrame
 				finally {
 					odb.closeConnection();
 				}
-				
+				*/
+				SaveDatabaseWindow saveDBWindow = new SaveDatabaseWindow(events);
+				saveDBWindow.frame.setVisible(true);
 			}
 	});
 	
