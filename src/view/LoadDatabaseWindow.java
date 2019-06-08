@@ -39,6 +39,7 @@ public class LoadDatabaseWindow {
 			public void actionPerformed(ActionEvent arg0)
 			{
 				okButtonHandler();
+				frame.dispose();
 			}
 		});
 		

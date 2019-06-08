@@ -36,6 +36,7 @@ public class SaveDatabaseWindow {
 			public void actionPerformed(ActionEvent arg0)
 			{
 				okButtonHandler();
+				frame.dispose();
 			}
 		});
 		
