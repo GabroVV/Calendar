@@ -33,7 +33,20 @@ public class DeleteEventWindow
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				okButtonHandler();
+				try
+					{
+						if (dateChooser.getDate() != null)
+						{
+							okButtonHandler();
+							JOptionPane.showMessageDialog(frame, "Events deleted", "Delete events", JOptionPane.INFORMATION_MESSAGE);
+							frame.dispose();
+						}
+						else throw new DateException("Date must be set");
+					} 
+					catch (DateException e)
+					{
+						System.out.println(e.getMessage());
+					}
 			}
 		});
 		
