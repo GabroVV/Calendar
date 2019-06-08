@@ -52,6 +52,31 @@ public class OperationsDatabase {
 		catch(SQLException exc){
 			System.out.println(exc);
 		}
+	}
 	
+	public void pullEventsFromDatabase(EventCollection events) {
+		try {
+			statement = conn.createStatement();
+			String sql = "SELECT * FROM calendardb.events";
+			ResultSet rs = statement.executeQuery(sql);
+				while(rs.next())
+				{
+					MyEvent event = new MyEvent();
+					event.setTitle(rs.getString("title"));
+					event.setDescription(rs.getString("description"));
+					event.setPlace(rs.getString("place"));
+					event.setAlarmTrigger(Boolean.parseBoolean(rs.getString("alarmtrigger")));
+					event.setStartDate(DateToReadableString.reverseStringToCalendar(rs.getString("start")));
+					event.setEndDate(DateToReadableString.reverseStringToCalendar(rs.getString("end")));
+					if(event.isAlarmTrigger()) {
+						event.setAlarmDate(DateToReadableString.reverseStringToCalendar(rs.getString("alarm")));
+					}
+					events.addEvent(event);
+				}
+			
+		}
+		catch(SQLException e) {
+			System.out.println(e);
+		}
 	}
 }

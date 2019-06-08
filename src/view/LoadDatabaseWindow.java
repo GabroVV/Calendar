@@ -1,27 +1,29 @@
 package view;
 
-import javax.swing.*;
-
-
-import data.*;
-import logic.*;
-
-import java.awt.*;
+import java.awt.Font;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.*;
 
-public class SaveDatabaseWindow {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import data.EventCollection;
+import logic.OperationsDatabase;
+
+public class LoadDatabaseWindow {
 	JFrame frame;
 	JLabel username,password;
 	TextField usernameField,passwordField;
 	JButton okButton, cancelButton;
 	EventCollection events;
 
-	SaveDatabaseWindow(EventCollection events){
+	LoadDatabaseWindow(EventCollection events){
 		this.events = events;
-		frame = new JFrame("Save to database");
+		frame = new JFrame("Load from database");
 		frame.setBounds(300,200,400,230);
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
@@ -88,11 +90,7 @@ public class SaveDatabaseWindow {
 		OperationsDatabase odb= new OperationsDatabase(usernameField.getText(),passwordField.getText());	
 		try {
 			odb.getConnection();
-			odb.clearDatabase();
-			for(int i =0;i<events.getEvents().size();i++)
-			{
-				odb.addEventToDB(events.getEvent(i));
-			}
+			odb.pullEventsFromDatabase(events);
 		}
 		catch(SQLException ex){
 			System.out.println(ex);

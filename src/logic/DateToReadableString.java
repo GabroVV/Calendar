@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class DateToReadableString {
 	public static String dateToString(Calendar date) {
@@ -28,6 +29,17 @@ public class DateToReadableString {
 		result+=month+"/";
 		result+=date.get(Calendar.YEAR);
 		result+=" "+hour+":"+minute;
+		return result;
+	}
+	
+	public static Calendar reverseStringToCalendar(String s) {
+		String year,month,day,hour,minute;
+		year = s.substring(6,10);
+		day  =s.substring(0,2);
+		month =s.substring(3,5);
+		hour =s.substring(11,13);
+		minute =s.substring(14,16);
+		GregorianCalendar result = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month)-1,Integer.parseInt(day),Integer.parseInt(hour),Integer.parseInt(minute));
 		return result;
 	}
 

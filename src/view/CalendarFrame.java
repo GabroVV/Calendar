@@ -144,27 +144,22 @@ public class CalendarFrame
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				/*OperationsDatabase odb = new OperationsDatabase("root","Zipper88@");
-				try {
-					odb.getConnection();
-					odb.clearDatabase();
-					for(int i =0;i<events.getEvents().size();i++)
-					{
-						odb.addEventToDB(events.getEvent(i));
-					}
-				}
-				catch(SQLException ex){
-					System.out.println(ex);
-				}
-				finally {
-					odb.closeConnection();
-				}
-				*/
+
 				SaveDatabaseWindow saveDBWindow = new SaveDatabaseWindow(events);
 				saveDBWindow.frame.setVisible(true);
 			}
 	});
 	
+	loadDatabase.addActionListener(new ActionListener()
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0)
+		{
+
+			LoadDatabaseWindow loadDBWindow = new LoadDatabaseWindow(events);
+			loadDBWindow.frame.setVisible(true);
+		}
+});
 	
 	saveCSV.addActionListener(new ActionListener()
 	{
