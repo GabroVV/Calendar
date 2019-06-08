@@ -1,5 +1,6 @@
 package data;
 import java.util.*;
+import logic.*;
 public class MyEvent implements Comparable<MyEvent> 
 {
 	String title;
@@ -74,7 +75,7 @@ public class MyEvent implements Comparable<MyEvent>
 	
 	public static String displayDate(Calendar date)
 	{
-		return  date.get(Calendar.DAY_OF_MONTH)+ "." + (date.get(Calendar.MONTH)+1) + "." + date.get(Calendar.YEAR) +" " + date.get(Calendar.HOUR_OF_DAY)  +":" + date.get(Calendar.MINUTE);
+		return  DateToReadableString.dateToString(date);
 	}
 
 	@Override

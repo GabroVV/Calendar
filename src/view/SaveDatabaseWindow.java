@@ -86,7 +86,7 @@ public class SaveDatabaseWindow {
 	}
 	
 	private void okButtonHandler() {
-		OperationsDatabase odb= new OperationsDatabase(usernameField.getText(),passwordField.getText());	
+		OperationsDatabase odb= new OperationsDatabase(usernameField.getText(),String.valueOf(passwordField.getPassword()));	
 		try {
 			odb.getConnection();
 			odb.clearDatabase();
