@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 import data.EventCollection;
 import logic.OperationsDatabase;
@@ -17,7 +18,8 @@ import logic.OperationsDatabase;
 public class LoadDatabaseWindow {
 	JFrame frame;
 	JLabel username,password;
-	TextField usernameField,passwordField;
+	TextField usernameField;
+	JPasswordField passwordField;
 	JButton okButton, cancelButton;
 	EventCollection events;
 
@@ -70,7 +72,7 @@ public class LoadDatabaseWindow {
 		usernameField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		frame.getContentPane().add(usernameField);
 		
-		passwordField = new TextField("");
+		passwordField = new JPasswordField("");
 		passwordField.setBounds(20, 115, 300, 30);
 		passwordField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		frame.getContentPane().add(passwordField);

@@ -15,7 +15,8 @@ import java.util.*;
 public class SaveDatabaseWindow {
 	JFrame frame;
 	JLabel username,password;
-	TextField usernameField,passwordField;
+	TextField usernameField;
+	JPasswordField passwordField;
 	JButton okButton, cancelButton;
 	EventCollection events;
 
@@ -68,7 +69,7 @@ public class SaveDatabaseWindow {
 		usernameField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		frame.getContentPane().add(usernameField);
 		
-		passwordField = new TextField("");
+		passwordField = new JPasswordField("");
 		passwordField.setBounds(20, 115, 300, 30);
 		passwordField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		frame.getContentPane().add(passwordField);
