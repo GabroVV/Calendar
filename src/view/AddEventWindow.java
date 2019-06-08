@@ -63,7 +63,8 @@ public class AddEventWindow
 			{
 				Calendar dateStartCalendar = dateStartChooser.getCalendar();
 				Calendar dateEndCalendar = dateEndChooser.getCalendar();
-
+				
+				
 				try
 				{
 					if (dateStartChooser.getDate() == null || dateEndChooser.getDate() == null)
@@ -76,16 +77,18 @@ public class AddEventWindow
 						{
 							throw new DateException("Event must begin before its end");
 						}
-						else if (Math.abs(dateStartChooser.getDate().getTime() - dateEndChooser.getDate().getTime()) < 3600000)
+						else
 						{
-							if (!sameDateHourCheck(
+							if (isDateTheSame() && !isHourStartBeforeEnd
+								(
 									Integer.parseInt((String)startHour.getSelectedItem()),
 									Integer.parseInt((String)startMinute.getSelectedItem()), 
 									Integer.parseInt((String)endHour.getSelectedItem()), 
 									Integer.parseInt((String)endMinute.getSelectedItem())
 								))
-										throw new DateException("Event must begin before its end");
-							
+							{
+								throw new DateException("Event must begin before its end");
+							}
 							else
 							{
 								dateStartCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String)startHour.getSelectedItem()));
@@ -123,6 +126,7 @@ public class AddEventWindow
 								}
 							}
 						}
+						
 					}
 				}
 				catch (DateException e)
@@ -130,7 +134,6 @@ public class AddEventWindow
 					System.out.println(e.getMessage());
 				}
 			}
-			
 		});
 		
 		cancelButton.addActionListener(new ActionListener()
@@ -337,7 +340,25 @@ public class AddEventWindow
 		frame.getContentPane().add(cancelButton);
 	}
 	
-	private boolean sameDateHourCheck(int startHour, int startMinute, int endHour, int endMinute)
+	private boolean isDateTheSame()
+	{
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(dateStartChooser.getDate());
+		Calendar calendar2 = Calendar.getInstance();
+		calendar2.setTime(dateEndChooser.getDate());
+		
+		if (
+				calendar.get(Calendar.DAY_OF_MONTH) == calendar2.get(Calendar.DAY_OF_MONTH) && 
+				calendar.get(Calendar.MONTH) == calendar2.get(Calendar.MONTH) &&
+				calendar.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR)
+		   )
+		{
+			return true;
+		}
+		else return false;		
+	}
+	
+	private boolean isHourStartBeforeEnd(int startHour, int startMinute, int endHour, int endMinute)
 	{
 		if (startHour == endHour)
 		{

@@ -5,7 +5,6 @@ import logic.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.sql.SQLException;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
