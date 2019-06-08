@@ -10,7 +10,10 @@ import javax.swing.*;
 import javax.swing.Timer;
 import javax.xml.datatype.DatatypeConfigurationException;
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
+
 import data.EventCollection;
+import data.MyEvent;
 
 public class CalendarFrame
 {
@@ -120,6 +123,9 @@ public class CalendarFrame
 		{
 			logic.OperationsXML.loadFromXML(events);
 			JOptionPane.showMessageDialog(frame, "Events imported succesfully", "File loaded", JOptionPane.INFORMATION_MESSAGE);
+			
+			
+			isItTimeToAlarm(events.getEvent(1));
 		}
 	});
 	
@@ -349,16 +355,69 @@ public class CalendarFrame
 	}
 	
 	private void checkTimer()
-	
 	{
 		for (int i=0; i<events.getEvents().size(); i++)
 		{
-			if (events.getEvent(i).isAlarmTrigger() && (events.getEvent(i).getAlarmDate().getTime().getTime() - new Date().getTime()) < 60000)
+			if (isItTimeToAlarm(events.getEvent(i)))
 			{
 				AlarmWindow window = new AlarmWindow(events.getEvent(i));
 				window.frame.setVisible(true);
 				Toolkit.getDefaultToolkit().beep();
 			}
+			
+			/*if (events.getEvent(i).isAlarmTrigger() && (events.getEvent(i).getAlarmDate().getTime().getTime() - new Date().getTime()) < 60000)
+			{
+				AlarmWindow window = new AlarmWindow(events.getEvent(i));
+				window.frame.setVisible(true);
+				window.timer.stop();
+				Toolkit.getDefaultToolkit().beep();
+			}*/
 		}
+	}
+	
+	private boolean isItTimeToAlarm(MyEvent event)
+	{
+		if (event.isAlarmTrigger())
+		{
+			
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Date());
+
+			if(isDateTheSame(event) && isHourTheSame(event.getAlarmHour(), event.getAlarmMinute(), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)))
+			{
+				return true;
+			}
+			else return false;
+		}
+		else return false;
+	}
+	
+	private boolean isDateTheSame(MyEvent event)
+	{
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(event.getAlarmDate().getTime());
+		Calendar calendar2 = Calendar.getInstance();
+		calendar2.setTime(new Date());
+		
+		if (
+				calendar.get(Calendar.DAY_OF_MONTH) == calendar2.get(Calendar.DAY_OF_MONTH) && 
+				calendar.get(Calendar.MONTH) == calendar2.get(Calendar.MONTH) &&
+				calendar.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR)
+		   )
+		{
+			return true;
+		}
+		else return false;		
+	}
+	
+	private boolean isHourTheSame(int startHour, int startMinute, int endHour, int endMinute)
+	{
+		if (startHour == endHour)
+		{
+			if (startMinute == endMinute)
+				return true;
+			else return false;
+		}
+		else return false;
 	}
 }

@@ -108,15 +108,18 @@ public class AddEventWindow
 
 								if(titleField.getText().isEmpty() == false) 
 								{
-									events.addEvent(new MyEvent(
+									MyEvent event = new MyEvent(
 											titleField.getText(),
 											descriptionArea.getText(),
 											placeField.getText(),
 											alarmCheckbox.getState(),
 											alarmCalendar,
 											dateStartCalendar,
-											dateEndCalendar
-											));
+											dateEndCalendar);
+									event.setAlarmHour(Integer.parseInt((String)alarmHour.getSelectedItem()));
+									event.setAlarmMinute(Integer.parseInt((String)alarmMinute.getSelectedItem()));
+									
+									events.addEvent(event);
 									System.out.println("Event added");
 									frame.dispose();
 								}

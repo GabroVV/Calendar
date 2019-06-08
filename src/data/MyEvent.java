@@ -11,6 +11,9 @@ public class MyEvent implements Comparable<MyEvent>
 	Calendar startDate;
 	Calendar endDate;
 	
+	int alarmHour;
+	int alarmMinute;
+	
 	public MyEvent() {}
 	
 	public MyEvent(String title, String description, String place, boolean alarmTrigger, Calendar alarmDate,
@@ -66,6 +69,23 @@ public class MyEvent implements Comparable<MyEvent>
 	public void setEndDate(Calendar endDate) {
 		this.endDate = endDate;
 	}
+	public int getAlarmHour()
+	{
+		return alarmHour;
+	}
+	public void setAlarmHour(int hour)
+	{
+		this.alarmHour = hour;
+	}
+	public int getAlarmMinute()
+	{
+		return alarmMinute;
+	}
+	public void setAlarmMinute(int minute)
+	{
+		this.alarmMinute = minute;
+	}
+
 
 	@Override
 	public int compareTo(MyEvent e) {

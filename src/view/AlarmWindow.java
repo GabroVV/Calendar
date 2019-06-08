@@ -41,7 +41,6 @@ public class AlarmWindow
 		scroll.setVisible(true);
 		frame.getContentPane().add(scroll);
 		
-	
 		
 		eventArea.append("Title: " + event.getTitle() + "\nDescription: " + event.getDescription() +
 						"\nPlace: " + event.getPlace() + "\nStarting: " + MyEvent.displayDate(event.getStartDate()) +
