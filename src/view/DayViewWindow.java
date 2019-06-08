@@ -95,7 +95,7 @@ public class DayViewWindow
 				if(arg0.getValueIsAdjusting())
 				{
 					
-					EventDetailsWindow window = new EventDetailsWindow(eventsOnDay, list);
+					EventDetailsWindow window = new EventDetailsWindow(events,eventsOnDay, list);
 					window.frame.setVisible(true);
 					try
 					{

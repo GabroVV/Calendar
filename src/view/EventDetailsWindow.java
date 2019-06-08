@@ -17,9 +17,14 @@ public class EventDetailsWindow
 	JLabel titleText, descriptionText, placeText, startDateText, stopDateText;
 	TextField titleContent, descriptionContent, placeContent, startDateContent, stopDateContent;
 	JButton close, delete;
-	
-	EventDetailsWindow(EventCollection eventsOnDay, JList<String> list)
+	EventCollection events;
+	JList<String> list;
+	int selectedIndex;
+	EventDetailsWindow(EventCollection events,EventCollection eventsOnDay, JList<String> list)
 	{
+		this.events = events;
+		this.list = list;
+		this.selectedIndex = list.getSelectedIndex();
 		frame = new JFrame("Event details");
 		frame.setBounds(300,200,800,550);
 		frame.getContentPane().setLayout(null);
@@ -88,7 +93,7 @@ public class EventDetailsWindow
 		stopDateText.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		stopDateText.setForeground(Color.WHITE);
 		frame.getContentPane().add(stopDateText);
-		
+
 		stopDateContent = new TextField(MyEvent.displayDate(eventsOnDay.getEvent(list.getSelectedIndex()).getEndDate()));
 		stopDateContent.setBounds(534,405,192,38);
 		stopDateContent.setVisible(true);
@@ -115,7 +120,8 @@ public class EventDetailsWindow
 				int selectedOption = JOptionPane.showConfirmDialog(frame, "Are you sure?","Exit",JOptionPane.YES_NO_OPTION);
 				if (selectedOption == JOptionPane.YES_OPTION)
 					{
-						//eventsOnDay.removeEvent(eventsOnDay.getEvent(list.getSelectedIndex()));
+
+						events.removeEvent(eventsOnDay.getEvent(selectedIndex));
 						
 						JOptionPane.showMessageDialog(frame, "Event has been deleted","",JOptionPane.INFORMATION_MESSAGE);
 						frame.dispose();
