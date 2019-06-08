@@ -26,6 +26,8 @@ public class MyEvent implements Comparable<MyEvent>
 		this.alarmDate = alarmDate;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.setAlarmHour();
+		this.setAlarmMinute();
 	}
 	public String getTitle() {
 		return title;
@@ -73,17 +75,17 @@ public class MyEvent implements Comparable<MyEvent>
 	{
 		return alarmHour;
 	}
-	public void setAlarmHour(int hour)
+	public void setAlarmHour()
 	{
-		this.alarmHour = hour;
+		this.alarmHour = alarmDate.get(Calendar.HOUR_OF_DAY);
 	}
 	public int getAlarmMinute()
 	{
 		return alarmMinute;
 	}
-	public void setAlarmMinute(int minute)
+	public void setAlarmMinute()
 	{
-		this.alarmMinute = minute;
+		this.alarmMinute = alarmDate.get(Calendar.MINUTE);
 	}
 
 

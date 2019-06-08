@@ -123,9 +123,6 @@ public class CalendarFrame
 		{
 			logic.OperationsXML.loadFromXML(events);
 			JOptionPane.showMessageDialog(frame, "Events imported succesfully", "File loaded", JOptionPane.INFORMATION_MESSAGE);
-			
-			
-			isItTimeToAlarm(events.getEvent(1));
 		}
 	});
 	
@@ -364,14 +361,6 @@ public class CalendarFrame
 				window.frame.setVisible(true);
 				Toolkit.getDefaultToolkit().beep();
 			}
-			
-			/*if (events.getEvent(i).isAlarmTrigger() && (events.getEvent(i).getAlarmDate().getTime().getTime() - new Date().getTime()) < 60000)
-			{
-				AlarmWindow window = new AlarmWindow(events.getEvent(i));
-				window.frame.setVisible(true);
-				window.timer.stop();
-				Toolkit.getDefaultToolkit().beep();
-			}*/
 		}
 	}
 	
