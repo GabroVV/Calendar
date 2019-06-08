@@ -81,7 +81,7 @@ public class EventDetailsWindow
 		frame.getContentPane().add(startDateText);
 		
 		startDateContent = new TextField(MyEvent.displayDate(eventsOnDay.getEvent(list.getSelectedIndex()).getStartDate()));
-		startDateContent.setBounds(172,405,192,38);
+		startDateContent.setBounds(172,405,205,38);
 		startDateContent.setVisible(true);
 		startDateContent.setFont(new Font("Times New Roman", Font.ITALIC, 26));
 		startDateContent.setFocusable(false);
@@ -95,7 +95,7 @@ public class EventDetailsWindow
 		frame.getContentPane().add(stopDateText);
 
 		stopDateContent = new TextField(MyEvent.displayDate(eventsOnDay.getEvent(list.getSelectedIndex()).getEndDate()));
-		stopDateContent.setBounds(534,405,192,38);
+		stopDateContent.setBounds(534,405,205,38);
 		stopDateContent.setVisible(true);
 		stopDateContent.setFont(new Font("Times New Roman", Font.ITALIC, 26));
 		stopDateContent.setFocusable(false);
