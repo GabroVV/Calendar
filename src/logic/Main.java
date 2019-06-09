@@ -26,13 +26,14 @@ public class Main
 	{
 		try
 		{
+			EventCollection events = new EventCollection();
 			if (args.length == 0)
 			{
 				throw new ArrayIndexOutOfBoundsException("Configuration argument required");
 			}
-			else if (Integer.parseInt(args[0]) == 1)
+			else if (args[0].equals("g"))
 			{
-				EventCollection events = new EventCollection();
+				
 				EventQueue.invokeLater(new Runnable()
 		        {
 		            public void run()
@@ -41,13 +42,18 @@ public class Main
 		            }
 		        });
 			}
-			else if (Integer.parseInt(args[0]) == 2)
+			else if (args[0].equals("t"))
 			{
-				// TUI
+				TextInterface tui = new TextInterface(events);
+				while(true) {
+					tui.displayMenu();
+					int action = tui.getUserInput();
+					tui.executeAction(action);
+				}
 			}
 			else System.out.println("Wrong configuration argument."
-					+ "\nChoose 1 if you want to use GUI"
-					+ "\nChoose 2 if you want to use TUI");
+					+ "\nChoose g if you want to use GUI"
+					+ "\nChoose t if you want to use TUI");
 		}
 		catch (ArrayIndexOutOfBoundsException e)
 		{
