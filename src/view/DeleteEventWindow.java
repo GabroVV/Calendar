@@ -8,6 +8,11 @@ import javax.swing.*;
 import com.toedter.calendar.JDateChooser;
 import logic.*;
 import data.*;
+
+/**
+ * Okno odpowiedzialne za usuwanie wydarzeñ
+ *
+ */
 public class DeleteEventWindow
 {
 	JFrame frame;
@@ -17,6 +22,10 @@ public class DeleteEventWindow
 	JButton okButton, cancelButton;
 	EventCollection events;
 	
+	/**
+	 * Konstruktor klasy DeleteEventWindow
+	 * @param events lista wydarzeñ
+	 */
 	DeleteEventWindow(EventCollection events)
 	{
 		this.events = events;

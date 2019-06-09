@@ -7,6 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import data.MyEvent;
 
+/**
+ * Okno powiadamiaj¹ce o nadchodz¹cym wydarzeniu
+ *
+ */
 public class AlarmWindow
 {
 	JFrame frame;
@@ -15,6 +19,10 @@ public class AlarmWindow
 	JButton OK;
 	JScrollPane scroll;
 	
+	/**
+	 * Konstruktor klasy AlarmWindow
+	 * @param event wybrane wydarzenie
+	 */
 	AlarmWindow(MyEvent event)
 	{
 		frame = new JFrame("Alarm trigerred");

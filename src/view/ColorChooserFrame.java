@@ -3,9 +3,13 @@ package view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
+
+/**
+ * Okno odpowiedzialne za wybieranie koloru
+ *
+ */
 public class ColorChooserFrame
 {
 	static Color chosenColor;
@@ -13,6 +17,9 @@ public class ColorChooserFrame
 	JColorChooser colorChooser;
 	Button apply, cancel;
 	
+	/**
+	 * Konstruktor klasy ColorChooserFrame
+	 */
 	ColorChooserFrame()
 	{
 		frame = new JFrame("Change background color");
@@ -65,6 +72,10 @@ public class ColorChooserFrame
 		frame.getContentPane().add(cancel);
 	}
 	
+	/**
+	 * 
+	 * @return wybrany kolor
+	 */
 	public static Color getChosenColor()
 	{
 		return chosenColor;

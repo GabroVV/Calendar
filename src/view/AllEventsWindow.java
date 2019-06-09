@@ -5,10 +5,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
-
 import data.EventCollection;
 import logic.EventCollectionController;
 
+/**
+ * Okno wyœwietlaj¹ce listê wszystkich zapisanych wydarzeñ
+ *
+ */
 public class AllEventsWindow
 {
 	JFrame frame;
@@ -18,6 +21,10 @@ public class AllEventsWindow
 	JButton close, OK;
 	TextField filterField;
 	
+	/**
+	 * Konstruktor klasy AllEventsWindow
+	 * @param events lista wydarzeñ
+	 */
 	AllEventsWindow(EventCollection events)
 	{
 		frame = new JFrame("All events");

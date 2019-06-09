@@ -3,6 +3,10 @@ package view;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Klasa adaptacyjna, implementuj¹ca interfejs MouseListener
+ *
+ */
 public class AdaptMouseListener implements MouseListener
 {
 

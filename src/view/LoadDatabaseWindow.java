@@ -15,6 +15,10 @@ import javax.swing.JPasswordField;
 import data.EventCollection;
 import logic.OperationsDatabase;
 
+/**
+ * Okno logowania do bazy danych w celu wczytania wydarzeñ
+ * 
+ */
 public class LoadDatabaseWindow {
 	JFrame frame;
 	JLabel username,password;

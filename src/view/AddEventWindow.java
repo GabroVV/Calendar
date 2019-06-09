@@ -8,7 +8,6 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.*;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,6 +17,11 @@ import javax.swing.JTextArea;
 import com.toedter.calendar.*;
 import data.*;
 import logic.*;
+
+/**
+ * Okno odpowiedzialne za dodawanie wydarzeñ
+ *
+ */
 public class AddEventWindow
 {
 	JFrame frame;
@@ -30,6 +34,11 @@ public class AddEventWindow
 	Checkbox alarmCheckbox;
 	EventCollection events;
 	
+	/**
+	 * Konstruktor klasy AddEventWindow
+	 * Tworzy okno umo¿liwiaj¹ce dodanie tytu³u, opisu, miejsca, czasu i ewentualnego alarmu wydarzenia
+	 * @param events lista wydarzeñ
+	 */
 	AddEventWindow(EventCollection events)
 	{
 		this.events = events;

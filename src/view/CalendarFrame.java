@@ -10,11 +10,13 @@ import javax.swing.*;
 import javax.swing.Timer;
 import javax.xml.datatype.DatatypeConfigurationException;
 import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JDateChooser;
-
 import data.EventCollection;
 import data.MyEvent;
 
+/**
+ * G³ówne okno programu
+ *
+ */
 public class CalendarFrame
 {
 	JFrame frame;
@@ -27,7 +29,10 @@ public class CalendarFrame
 	Timer timer;
 	boolean keyboardCheck = false;
 	
-	
+	/**
+	 * Konstruktor klasy CalendarFrame
+	 * @param events lista wydarzeñ
+	 */
 	public CalendarFrame(EventCollection events)
 	{
 	frame = new JFrame ("Calendar");

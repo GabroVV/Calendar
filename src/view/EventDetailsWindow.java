@@ -5,12 +5,14 @@ import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
-
 import data.EventCollection;
 import data.MyEvent;
 
+/**
+ * Okno wyœwietlaj¹ce szczegó³y wybranego wydarzenia
+ *
+ */
 public class EventDetailsWindow
 {
 	JFrame frame;
@@ -20,7 +22,14 @@ public class EventDetailsWindow
 	EventCollection events;
 	JList<String> list;
 	int selectedIndex;
-	EventDetailsWindow(EventCollection events,EventCollection eventsOnDay, JList<String> list)
+	
+	/**
+	 * Konstruktor klasy EventDetailsWindow
+	 * @param events lista wszystkich wydarzeñ
+	 * @param eventsOnDay lista wydarzeñ danego dnia
+	 * @param list lista Stringów opisuj¹cych wydarzenie
+	 */
+	EventDetailsWindow(EventCollection events, EventCollection eventsOnDay, JList<String> list)
 	{
 		this.events = events;
 		this.list = list;

@@ -7,9 +7,13 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import data.*;
 import logic.*;
+
+/**
+ * Okno z list¹ wydarzeñ danego dnia
+ *
+ */
 public class DayViewWindow
 {
 	JFrame frame;
@@ -22,6 +26,11 @@ public class DayViewWindow
 	EventCollectionController evc= new EventCollectionController();
 	JScrollPane scroll;
 	
+	/**
+	 * Konstruktor klasy DayViewWindow
+	 * @param day wybrany dzieñ
+	 * @param events lista wydarzeñ
+	 */
 	DayViewWindow(Calendar day,EventCollection events)
 	{
 		this.day= day;

@@ -12,6 +12,10 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * Okno logowania do bazy danych w celu zapisania wydarzeñ
+ * 
+ */
 public class SaveDatabaseWindow {
 	JFrame frame;
 	JLabel username,password;
