@@ -44,8 +44,12 @@ public class MyEvent implements Comparable<MyEvent>
 		this.alarmDate = alarmDate;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.setAlarmHour();
-		this.setAlarmMinute();
+		
+		if (alarmTrigger == true)
+		{
+			this.setAlarmHour();
+			this.setAlarmMinute();
+		}
 	}
 	
 	/**
