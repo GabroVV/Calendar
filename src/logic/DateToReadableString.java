@@ -66,5 +66,9 @@ public class DateToReadableString {
 		GregorianCalendar result = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month)-1,Integer.parseInt(day),Integer.parseInt(hour),Integer.parseInt(minute));
 		return result;
 	}
+	
+	public static boolean checkFormat(String s) {
+		return s.matches("^\\d{2}/\\d{2}/\\d{4}\\s\\d{2}:\\d{2}");
+	}
 
 };
