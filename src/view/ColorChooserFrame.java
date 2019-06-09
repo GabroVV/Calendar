@@ -22,7 +22,7 @@ public class ColorChooserFrame
 	 */
 	public ColorChooserFrame()
 	{
-		frame = new JFrame("Change background color");
+		frame = new JFrame("Change font color");
 		frame.setBounds(300, 200, 650, 550);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);

@@ -8,15 +8,26 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import data.*;
 import logic.*;
 
-
+/**
+ * Klasa obs³uguj¹ca tekstowy interfejs u¿ytkownika
+ *
+ */
 public class TextInterface {
 	EventCollection events;
 	Scanner reader;
+	
+	/**
+	 * Konstruktor klasy TextInterface
+	 * @param events lista wydarzeñ
+	 */
 	public TextInterface(EventCollection events){
 		this.events = events;
 		reader = new Scanner(System.in);
 	}
 	
+	/**
+	 * Wyœwietla interfejs tekstowy
+	 */
 	public void displayMenu() {
 		System.out.println("Choose operation: ");
 		System.out.println("1. Display all events");
@@ -27,12 +38,20 @@ public class TextInterface {
 		
 	}
 	
+	/**
+	 * Pobiera wybór od u¿ytkownika
+	 * @return znak wpisany przez u¿ytkownika
+	 */
 	public char getUserInput() {
 		char result = reader.next().charAt(0);		
 		reader.nextLine();
 		return result;
 	}
 	
+	/**
+	 * Wykonuje operacje wybrane przez u¿ytkownika
+	 * @param number numer wybranej funkcjonalnoœci
+	 */
 	public void executeAction(int number) {
 		switch(number) {
 			case '1':{
@@ -74,6 +93,35 @@ public class TextInterface {
 					if(DateToReadableString.checkFormat(end)) {
 						goodFormat = true;
 					}
+				}
+				
+				Calendar dateStart = DateToReadableString.reverseStringToCalendar(start);
+				Calendar dateEnd = DateToReadableString.reverseStringToCalendar(end);
+				
+				try
+				{
+					if (dateStart.after(dateEnd))
+					{
+						throw new DateException("Event must begin before its end");
+					}
+					else
+					{
+						if (isDateTheSame(dateStart, dateEnd) && !isHourStartBeforeEnd
+							(
+								Integer.parseInt(start.substring(11,13)),
+								Integer.parseInt(start.substring(14,16)),
+								Integer.parseInt(end.substring(11,13)),
+								Integer.parseInt(end.substring(14,16))
+							))
+						{
+							throw new DateException("Event must begin before its end");
+						}
+					}
+				}
+				catch (DateException e)
+				{
+					System.out.println(e.getMessage());
+					break;
 				}
 			
 				while((alarmt.equals("y") || alarmt.equals("n")) == false)
@@ -144,6 +192,38 @@ public class TextInterface {
 			}
 		}
 	}
+	
+		private boolean isDateTheSame(Calendar date1, Calendar date2)
+		{
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(date1.getTime());
+			Calendar calendar2 = Calendar.getInstance();
+			calendar2.setTime(date2.getTime());
+			
+			if (
+					calendar.get(Calendar.DAY_OF_MONTH) == calendar2.get(Calendar.DAY_OF_MONTH) && 
+					calendar.get(Calendar.MONTH) == calendar2.get(Calendar.MONTH) &&
+					calendar.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR)
+			   )
+			{
+				return true;
+			}
+			else return false;		
+		}
+		
+		private boolean isHourStartBeforeEnd(int startHour, int startMinute, int endHour, int endMinute)
+		{
+			if (startHour == endHour)
+			{
+				if (startMinute <= endMinute)
+					return true;
+				else return false;
+			}
+			else if (startHour < endHour)
+				return true;
+			else return false;
+		}
+	
 	
 	
 }

@@ -13,8 +13,8 @@ public class Main
 {
 	
 	/**
-	 * Umo¿liwia wybór dzia³ania aplikacji poprzez wprowadzenie odpowiedniego argumentu konfiguracji: 1 - aplikacja z graficznym interfejsem u¿ytkownika, 
-	 * 2 - aplikacja z interfejsem tekstowym
+	 * Umo¿liwia wybór dzia³ania aplikacji poprzez wprowadzenie odpowiedniego argumentu konfiguracji: g - aplikacja z graficznym interfejsem u¿ytkownika, 
+	 * t - aplikacja z interfejsem tekstowym
 	 * @param args tablica Stringów
 	 */
 	public static void main(String[] args)
