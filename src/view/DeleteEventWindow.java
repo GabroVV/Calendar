@@ -26,7 +26,7 @@ public class DeleteEventWindow
 	 * Konstruktor klasy DeleteEventWindow
 	 * @param events lista wydarzeñ
 	 */
-	DeleteEventWindow(EventCollection events)
+	public DeleteEventWindow(EventCollection events)
 	{
 		this.events = events;
 		frame = new JFrame("Delete events");

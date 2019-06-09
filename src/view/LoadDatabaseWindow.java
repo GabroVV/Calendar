@@ -31,7 +31,7 @@ public class LoadDatabaseWindow {
 	 * Konstruktor klasy LoadDatabaseWindow
 	 * @param events lista wydarzeñ
 	 */
-	LoadDatabaseWindow(EventCollection events){
+	public LoadDatabaseWindow(EventCollection events){
 		this.events = events;
 		frame = new JFrame("Load from database");
 		frame.setBounds(300,200,400,230);

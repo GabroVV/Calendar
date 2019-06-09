@@ -14,7 +14,7 @@ import data.EventCollection;
 import data.MyEvent;
 
 /**
- * G³ówne okno programu
+ * G³ówne okno programu, zawiera panel menu oraz widok kalendarza
  *
  */
 public class CalendarFrame

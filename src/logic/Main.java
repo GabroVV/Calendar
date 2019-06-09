@@ -11,11 +11,6 @@ import data.*;
  */
 public class Main
 {
-
-	/*
-	 * Konstruktor domyœlny
-	 */
-	public Main() {}
 	
 	/**
 	 * Umo¿liwia wybór dzia³ania aplikacji poprzez wprowadzenie odpowiedniego argumentu konfiguracji: 1 - aplikacja z graficznym interfejsem u¿ytkownika, 

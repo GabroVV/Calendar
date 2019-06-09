@@ -23,7 +23,7 @@ public class AlarmWindow
 	 * Konstruktor klasy AlarmWindow
 	 * @param event wybrane wydarzenie
 	 */
-	AlarmWindow(MyEvent event)
+	public AlarmWindow(MyEvent event)
 	{
 		frame = new JFrame("Alarm trigerred");
 		frame.setBounds(300,200,450,450);

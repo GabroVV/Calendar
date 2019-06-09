@@ -28,7 +28,7 @@ public class SaveDatabaseWindow {
 	 * Konstruktor klasy SaveDatabaseWindow
 	 * @param events lista wydarzeñ
 	 */
-	SaveDatabaseWindow(EventCollection events){
+	public SaveDatabaseWindow(EventCollection events){
 		this.events = events;
 		frame = new JFrame("Save to database");
 		frame.setBounds(300,200,400,230);

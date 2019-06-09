@@ -25,7 +25,7 @@ public class AllEventsWindow
 	 * Konstruktor klasy AllEventsWindow
 	 * @param events lista wydarzeñ
 	 */
-	AllEventsWindow(EventCollection events)
+	public AllEventsWindow(EventCollection events)
 	{
 		frame = new JFrame("All events");
 		frame.setBounds(300,200,450,600);
