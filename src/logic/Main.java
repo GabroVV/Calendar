@@ -39,12 +39,19 @@ public class Main
 			}
 			else if (args[0].equals("t"))
 			{
-				TextInterface tui = new TextInterface(events);
-				while(true) {
-					tui.displayMenu();
-					int action = tui.getUserInput();
-					tui.executeAction(action);
-				}
+				
+				EventQueue.invokeLater(new Runnable()
+		        {
+		            public void run()
+		            {
+		            	TextInterface tui = new TextInterface(events);
+						while(true) {
+							tui.displayMenu();
+							int action = tui.getUserInput();
+							tui.executeAction(action);
+						}
+		            }
+		        });
 			}
 			else System.out.println("Wrong configuration argument."
 					+ "\nChoose g if you want to use GUI"
