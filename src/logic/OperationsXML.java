@@ -16,11 +16,25 @@ import javax.xml.transform.stream.StreamResult;
 
 import data.*;
 
+/**
+ * Klasa obs³uguj¹ca operacje na plikach .xml
+ *
+ */
 public class OperationsXML
 {
 	static Element root, event, eventTitle, eventDescription, eventPlace, eventStartDate, eventEndDate, alarmDate;
 	static Attr attribute;
 
+	/**
+	 * Konstruktor domyœlny
+	 */
+	public OperationsXML() {}
+	
+	/**
+	 * Zapisuje wydarzenia do pliku .xml
+	 * @param events lista wydarzeñ
+	 * @throws DatatypeConfigurationException jeœli nie uda siê zapisaæ daty do pliku .xml
+	 */
 	public static void saveToXML(EventCollection events) throws DatatypeConfigurationException
 	{
 		try
@@ -122,7 +136,10 @@ public class OperationsXML
 		}
 	}
 	
-	
+	/**
+	 * Wczytuje wydarzenia z pliku .xml
+	 * @param events lista wydarzeñ
+	 */
 	public static void loadFromXML(EventCollection events)
 	{
 		try

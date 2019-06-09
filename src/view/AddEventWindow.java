@@ -35,8 +35,7 @@ public class AddEventWindow
 	EventCollection events;
 	
 	/**
-	 * Konstruktor klasy AddEventWindow
-	 * Tworzy okno umo¿liwiaj¹ce dodanie tytu³u, opisu, miejsca, czasu i ewentualnego alarmu wydarzenia
+	 * Konstruktor klasy AddEventWindow, tworzy okno umo¿liwiaj¹ce dodanie tytu³u, opisu, miejsca, czasu i ewentualnego alarmu wydarzenia
 	 * @param events lista wydarzeñ
 	 */
 	AddEventWindow(EventCollection events)

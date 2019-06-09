@@ -73,7 +73,7 @@ public class ColorChooserFrame
 	}
 	
 	/**
-	 * 
+	 * Zwraca wybrany kolor
 	 * @return wybrany kolor
 	 */
 	public static Color getChosenColor()

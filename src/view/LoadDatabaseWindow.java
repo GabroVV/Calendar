@@ -27,6 +27,10 @@ public class LoadDatabaseWindow {
 	JButton okButton, cancelButton;
 	EventCollection events;
 
+	/**
+	 * Konstruktor klasy LoadDatabaseWindow
+	 * @param events lista wydarzeñ
+	 */
 	LoadDatabaseWindow(EventCollection events){
 		this.events = events;
 		frame = new JFrame("Load from database");

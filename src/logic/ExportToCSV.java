@@ -3,14 +3,26 @@ import java.io.*;
 import java.util.Calendar;
 
 import data.*;
+
+/**
+ * Klasa obs³uguj¹ca eksportowanie wydarzeñ do pliku .csv
+ *
+ */
 public class ExportToCSV {
 
 	EventCollection events;
 	
+	/**
+	 * Konstruktor klasy ExportToCSV
+	 * @param events lista wydarzeñ
+	 */
 	public ExportToCSV(EventCollection events) {
 		this.events = events;
 	}
 	
+	/**
+	 * Zapisuje listê wydarzeñ w pliku .csv
+	 */
 	public void execute() {
 		   File file = new File("./GoogleCalendarImport.csv");
 		   String data = new String("Subject,Start Date,Start Time,End Date,End Time,Description,Location\n");

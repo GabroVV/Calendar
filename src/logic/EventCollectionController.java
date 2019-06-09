@@ -9,6 +9,11 @@ import data.*;
 public class EventCollectionController {
 	
 	/**
+	 * Konstruktor domyœlny
+	 */
+	public EventCollectionController() {}
+	
+	/**
 	 * Sortuje wydarzenia po dacie rozpoczêcia
 	 * @param collection lista wszystkich wydarzeñ
 	 */

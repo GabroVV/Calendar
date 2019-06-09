@@ -3,7 +3,22 @@ package logic;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/**
+ * Klasa konwertuj¹ca datê do czytelnej postaci
+ *
+ */
 public class DateToReadableString {
+	
+	/**
+	 * Konstruktor domyœlny
+	 */
+	public DateToReadableString() {}
+	
+	/**
+	 * Konwertuje datê do czytelnej postaci
+	 * @param date data typu Calendar
+	 * @return data typu String
+	 */
 	public static String dateToString(Calendar date) {
 		if(date == null) {
 			return null;
@@ -32,6 +47,11 @@ public class DateToReadableString {
 		return result;
 	}
 	
+	/**
+	 * Klasa konwertuj¹ca datê z typu String do typu Calendar
+	 * @param s data typu String
+	 * @return data typu Calendar
+	 */
 	public static Calendar reverseStringToCalendar(String s) {
 		String year,month,day,hour,minute;
 		year = s.substring(6,10);

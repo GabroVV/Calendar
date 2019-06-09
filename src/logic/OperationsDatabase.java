@@ -2,16 +2,31 @@ package logic;
 import java.sql.*;
 import java.util.*;
 import data.*;
+
+/**
+ * Klasa obs³uguj¹ca operacje na bazie danych
+ *
+ */
 public class OperationsDatabase {
 	private String userName;
 	private String password;
 	private Statement statement = null;
     Connection conn = null;
 
+    /**
+     * Konstruktor klasy OperationDatabase
+     * @param username nazwa u¿ytkownika
+     * @param password has³o
+     */
 	public OperationsDatabase(String username, String password) {
 		this.userName = username;
 		this.password = password;
 	}
+	
+	/**
+	 * Nawi¹zuje po³¹czenie z baz¹ danych
+	 * @throws SQLException jeœli nie uda³o siê po³¹czyæ z baz¹ danych
+	 */
 	public void getConnection() throws SQLException {
 
 	    Properties connectionProps = new Properties();
@@ -21,6 +36,10 @@ public class OperationsDatabase {
 	    System.out.println("Connected to database");
 	}
 
+	/**
+	 * Dodaje wydarzenie do bazy danych
+	 * @param e wybrane wydarzenie
+	 */
 	public void addEventToDB(MyEvent e) {
 		try {
 			statement = conn.createStatement();
@@ -34,6 +53,9 @@ public class OperationsDatabase {
 		}
 	}
 	
+	/**
+	 * Koñczy po³¹czenie z baz¹ danych
+	 */
 	public void closeConnection(){
 		try {
 			conn.close();
@@ -43,6 +65,9 @@ public class OperationsDatabase {
 		}
 	}
 	
+	/**
+	 * Usuwa wszystkie rekordy z bazy danych
+	 */
 	public void clearDatabase() {
 		try {
 			statement = conn.createStatement();
@@ -54,6 +79,10 @@ public class OperationsDatabase {
 		}
 	}
 	
+	/**
+	 * Wczytuje wydarzenia z bazy danych
+	 * @param events lista wydarzeñ
+	 */
 	public void pullEventsFromDatabase(EventCollection events) {
 		try {
 			statement = conn.createStatement();

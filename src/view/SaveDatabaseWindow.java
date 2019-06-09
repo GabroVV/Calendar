@@ -24,6 +24,10 @@ public class SaveDatabaseWindow {
 	JButton okButton, cancelButton;
 	EventCollection events;
 
+	/**
+	 * Konstruktor klasy SaveDatabaseWindow
+	 * @param events lista wydarzeñ
+	 */
 	SaveDatabaseWindow(EventCollection events){
 		this.events = events;
 		frame = new JFrame("Save to database");
