@@ -122,8 +122,17 @@ public class TextInterface {
 				break;
 			}
 			case '5':{
-				System.out.println("Input date in DD/MM/YYYY HH:MM format");
-				String datestr = reader.nextLine();
+				String datestr = null;
+				boolean goodFormat = false;
+				while(goodFormat == false)
+				{
+					System.out.println("Input date in DD/MM/YYYY HH:MM format");
+					datestr = reader.nextLine();
+					if(DateToReadableString.checkFormat(datestr)) {
+						goodFormat = true;
+					}
+				}
+				
 				Calendar date = DateToReadableString.reverseStringToCalendar(datestr);
 				EventCollectionController evc = new EventCollectionController();
 				evc.removeEventsBeforeDate(events, date);
