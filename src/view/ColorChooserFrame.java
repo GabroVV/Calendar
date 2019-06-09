@@ -20,7 +20,7 @@ public class ColorChooserFrame
 	/**
 	 * Konstruktor klasy ColorChooserFrame
 	 */
-	ColorChooserFrame()
+	public ColorChooserFrame()
 	{
 		frame = new JFrame("Change background color");
 		frame.setBounds(300, 200, 650, 550);

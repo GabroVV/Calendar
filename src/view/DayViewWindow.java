@@ -31,7 +31,7 @@ public class DayViewWindow
 	 * @param day wybrany dzieñ
 	 * @param events lista wydarzeñ
 	 */
-	DayViewWindow(Calendar day,EventCollection events)
+	public DayViewWindow(Calendar day,EventCollection events)
 	{
 		this.day= day;
 		this.events = events;

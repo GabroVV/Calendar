@@ -29,7 +29,7 @@ public class EventDetailsWindow
 	 * @param eventsOnDay lista wydarzeñ danego dnia
 	 * @param list lista Stringów opisuj¹cych wydarzenie
 	 */
-	EventDetailsWindow(EventCollection events, EventCollection eventsOnDay, JList<String> list)
+	public EventDetailsWindow(EventCollection events, EventCollection eventsOnDay, JList<String> list)
 	{
 		this.events = events;
 		this.list = list;
