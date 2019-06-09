@@ -53,6 +53,10 @@ public class DateToReadableString {
 	 * @return data typu Calendar
 	 */
 	public static Calendar reverseStringToCalendar(String s) {
+		if(s.equals(null))
+		{
+			return null;
+		}
 		String year,month,day,hour,minute;
 		year = s.substring(6,10);
 		day  =s.substring(0,2);
