@@ -119,6 +119,7 @@ public class AllEventsWindow
 		OK = new JButton("OK");
 		OK.setBounds(185, 20, 55, 30);
 		OK.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		OK.setMnemonic(KeyEvent.VK_ENTER);
 		frame.getContentPane().add(OK);
 	}
 }
