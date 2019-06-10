@@ -40,6 +40,8 @@ public class TextInterface {
 		System.out.println("5. Save events to XML file");
 		System.out.println("6. Delete events older than given date");
 		System.out.println("7. Display info");
+		System.out.println("8. Close program");
+
 		
 	}
 	
@@ -223,7 +225,11 @@ public class TextInterface {
 				System.out.println("Calendar made by Jakub Bogdan & Gabriel Nowak.\nUser can add events, set alarms, load and save data to XML.");
 				break;
 			}
-			
+			case '8':{
+				System.out.println("Closing program");
+				System.exit(0);
+
+			}
 
 			default:{
 				break;
