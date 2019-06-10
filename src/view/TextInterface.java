@@ -137,6 +137,7 @@ public class TextInterface {
 					alarmt = reader.nextLine();
 					if(alarmt.equals("y")){
 						alarmBool = true;
+						
 					}
 					else {
 						alarmBool = false;
@@ -147,6 +148,8 @@ public class TextInterface {
 					goodFormat = false;
 					while(goodFormat == false)
 					{
+						System.out.println("Input alarm date in DD/MM/YYYY HH:MM format ");
+						alarm = reader.nextLine();
 						if(DateToReadableString.checkFormat(alarm)) {
 							goodFormat = true;
 							alarmCalendar = DateToReadableString.reverseStringToCalendar(alarm);
@@ -154,7 +157,7 @@ public class TextInterface {
 					}
 				}
 				
-				MyEvent e = new MyEvent(title,description,place,Boolean.getBoolean(alarmt),alarmCalendar,DateToReadableString.reverseStringToCalendar(start),DateToReadableString.reverseStringToCalendar(end));
+				MyEvent e = new MyEvent(title,description,place,alarmBool,alarmCalendar,DateToReadableString.reverseStringToCalendar(start),DateToReadableString.reverseStringToCalendar(end));
 				events.addEvent(e);
 				
 				break;
