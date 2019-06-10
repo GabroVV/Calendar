@@ -43,8 +43,14 @@ public class OperationsDatabase {
 	public void addEventToDB(MyEvent e) {
 		try {
 			statement = conn.createStatement();
-			String sql = "INSERT INTO calendardb.events (title,description,place,alarmTrigger,start,end,alarm)" +
-					" values ('"+e.getTitle()+"','"+e.getDescription()+"','"+e.getPlace()+"','"+Boolean.toString(e.isAlarmTrigger())+"','"+DateToReadableString.dateToString(e.getStartDate())+"','"+DateToReadableString.dateToString(e.getEndDate())+"','"+DateToReadableString.dateToString(e.getAlarmDate())+"')";
+			String sql = "INSERT INTO calendardb.events (title,description,place,alarmTrigger,start,end,alarm)"; 
+			sql +=" values ('"+e.getTitle()+"','";
+			sql+=e.getDescription()+"','";
+			sql+=e.getPlace()+"','";
+			sql+=Boolean.toString(e.isAlarmTrigger())+"','";
+			sql+=DateToReadableString.dateToString(e.getStartDate())+"','";
+			sql+=DateToReadableString.dateToString(e.getEndDate())+"','";
+			sql+=DateToReadableString.dateToString(e.getAlarmDate())+"')";
 			statement.executeUpdate(sql);
 			System.out.println(DateToReadableString.dateToString(e.getStartDate()));
 		}

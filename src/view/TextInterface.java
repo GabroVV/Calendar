@@ -268,8 +268,6 @@ public class TextInterface {
 				return true;
 			else return false;
 		}
-	
-	
-	
+
 }
 
