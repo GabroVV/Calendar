@@ -373,7 +373,6 @@ public class CalendarFrame
 	{
 		if (event.isAlarmTrigger())
 		{
-			
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(new Date());
 
