@@ -1,8 +1,11 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import data.*;
@@ -36,7 +39,7 @@ public class TextInterface {
 		System.out.println("4. Load events from XML file");
 		System.out.println("5. Save events to XML file");
 		System.out.println("6. Delete events older than given date");
-
+		System.out.println("7. Display info");
 		
 	}
 	
@@ -215,6 +218,13 @@ public class TextInterface {
 				
 				break;
 			}
+			
+			case '7':{
+				System.out.println("Calendar made by Jakub Bogdan & Gabriel Nowak.\nUser can add events, set alarms, load and save data to XML.");
+				break;
+			}
+			
+
 			default:{
 				break;
 			}
