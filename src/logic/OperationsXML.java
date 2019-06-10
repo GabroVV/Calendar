@@ -144,6 +144,7 @@ public class OperationsXML
 	{
 		try
 		{
+			events.getEvents().clear();
 			File xmlFile = new File("events.xml");
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();

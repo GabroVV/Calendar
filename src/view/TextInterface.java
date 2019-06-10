@@ -32,9 +32,11 @@ public class TextInterface {
 		System.out.println("Choose operation: ");
 		System.out.println("1. Display all events");
 		System.out.println("2. Add event");
-		System.out.println("3. Load events from XML file");
-		System.out.println("4. Save events to XML file");
-		System.out.println("5. Delete events older than given date");
+		System.out.println("3. Delete event");
+		System.out.println("4. Load events from XML file");
+		System.out.println("5. Save events to XML file");
+		System.out.println("6. Delete events older than given date");
+
 		
 	}
 	
@@ -152,13 +154,13 @@ public class TextInterface {
 				
 				break;
 			}
-			case '3':{
+			case '4':{
 				OperationsXML.loadFromXML(events);
 				System.out.println("Loaded events from XML file");
 				break;
 			}
 			
-			case '4':{
+			case '5':{
 				try {
 					OperationsXML.saveToXML(events);
 				}
@@ -169,7 +171,7 @@ public class TextInterface {
 				System.out.println("Saved events to XML file");
 				break;
 			}
-			case '5':{
+			case '6':{
 				String datestr = null;
 				boolean goodFormat = false;
 				while(goodFormat == false)
@@ -187,9 +189,36 @@ public class TextInterface {
 				
 				break;
 			}
+			case '3':{
+				System.out.println("Enter index of the event you want deleted");
+				for(int i=0;i<events.getEvents().size();i++)
+				{
+					String eventDisplay = Integer.toString(i);		
+					eventDisplay += ".  ";
+					eventDisplay += events.getEvent(i);
+					System.out.println(eventDisplay);
+				}
+				int choice;
+				choice = reader.nextInt();
+				reader.nextLine();
+				if(choice<events.getEvents().size())
+				{
+					events.getEvents().remove(choice);
+					System.out.println("Event deleted");
+
+				}
+				else
+				{
+					System.out.println("There is no such event");
+
+				}
+				
+				break;
+			}
 			default:{
 				break;
 			}
+		
 		}
 	}
 	
