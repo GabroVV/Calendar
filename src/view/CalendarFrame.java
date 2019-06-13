@@ -219,25 +219,12 @@ public class CalendarFrame
      component[i].addKeyListener(new KeyAdapter() 
      {
          @Override
-         public void keyReleased(KeyEvent keyEvent) 
-         {
-             super.keyReleased(keyEvent);
-             if (keyEvent.getKeyCode() == 10)
-             {
-            	 Calendar day = new GregorianCalendar(calendar.getYearChooser().getYear(),calendar.getMonthChooser().getMonth(),calendar.getDayChooser().getDay());
-            	 DayViewWindow window = new DayViewWindow(day,events);
-            	 window.frame.setVisible(true);
-             }
-            	 
-             
-             super.keyPressed(keyEvent);
-
-         }
+         public void keyReleased(KeyEvent keyEvent) {}
 
          @Override
          public void keyPressed(KeyEvent keyEvent) 
          {
-             if (keyEvent.getKeyCode() == 10) 
+             if (keyEvent.getKeyCode() == KeyEvent.VK_ENTER) 
              {
             	 Calendar day = new GregorianCalendar(calendar.getYearChooser().getYear(),calendar.getMonthChooser().getMonth(),calendar.getDayChooser().getDay());
             	 DayViewWindow window = new DayViewWindow(day, events);
@@ -248,16 +235,7 @@ public class CalendarFrame
          }
 
          @Override
-         public void keyTyped(KeyEvent keyEvent) 
-         {
-             if (keyEvent.getKeyCode() == 10) 
-             {
-            	 Calendar day = new GregorianCalendar(calendar.getYearChooser().getYear(),calendar.getMonthChooser().getMonth(),calendar.getDayChooser().getDay());
-            	 DayViewWindow window = new DayViewWindow(day, events);
-            	 window.frame.setVisible(true);
-             }
-             super.keyTyped(keyEvent);
-         }
+         public void keyTyped(KeyEvent keyEvent) {}
      });
  }
      
@@ -293,6 +271,8 @@ public class CalendarFrame
 		loadDatabase = new JMenuItem("database");
 		
 		exit = new JMenuItem("Exit");
+		
+		addKeyboardShortcuts();
 		
 		menu.add(addEvent);
 		menu.add(deleteEvents);
@@ -412,5 +392,12 @@ public class CalendarFrame
 			else return false;
 		}
 		else return false;
+	}
+	
+	private void addKeyboardShortcuts()
+	{ 
+		addEvent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK));
+		deleteEvents.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_DOWN_MASK));
+		showEvents.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_DOWN_MASK));
 	}
 }
