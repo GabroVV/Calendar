@@ -42,17 +42,18 @@ public class OperationsDatabase {
 	 */
 	public void addEventToDB(MyEvent e) {
 		try {
-			statement = conn.createStatement();
-			String sql = "INSERT INTO calendardb.events (title,description,place,alarmTrigger,start,end,alarm)"; 
-			sql +=" values ('"+e.getTitle()+"','";
-			sql+=e.getDescription()+"','";
-			sql+=e.getPlace()+"','";
-			sql+=Boolean.toString(e.isAlarmTrigger())+"','";
-			sql+=DateToReadableString.dateToString(e.getStartDate())+"','";
-			sql+=DateToReadableString.dateToString(e.getEndDate())+"','";
-			sql+=DateToReadableString.dateToString(e.getAlarmDate())+"')";
-			statement.executeUpdate(sql);
-			System.out.println(DateToReadableString.dateToString(e.getStartDate()));
+		
+			PreparedStatement preparedstatement = conn.prepareStatement("INSERT INTO calendardb.events (title,description,place,alarmTrigger,start,end,alarm) values (?,?,?,?,?,?,?)");
+			preparedstatement.setString(1, e.getTitle());
+			preparedstatement.setString(2, e.getDescription());
+			preparedstatement.setString(3, e.getDescription());
+			preparedstatement.setString(4,Boolean.toString(e.isAlarmTrigger()));
+			preparedstatement.setString(5, DateToReadableString.dateToString(e.getStartDate()));
+			preparedstatement.setString(6, DateToReadableString.dateToString(e.getEndDate()));
+			preparedstatement.setString(7, DateToReadableString.dateToString(e.getAlarmDate()));
+			preparedstatement.executeUpdate();
+			
+			System.out.println("Event added to database");
 		}
 		catch(SQLException exc){
 			System.out.println(exc);
