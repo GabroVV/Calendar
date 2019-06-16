@@ -64,12 +64,8 @@ public class ExportToCSV {
 	            fw.write(data);
 	            fw.close();
 	        }
-
 	        catch (IOException io)
 	        {System.out.println(io.getMessage());}
-
-	        catch (Exception se)
-	        {System.err.println("Gotta catch em' all");}
 
 	}
 
