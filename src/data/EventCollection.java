@@ -34,7 +34,7 @@ public class EventCollection{
 	}
 
 	/**
-	 * Dodaje wydarzenie do listy
+	 * Dodaje wydarzenie do listy, u¿ywany w warstwach logiki
 	 * @param e dane wydarzenie
 	 * @return true, jeœli zapisywanie powiedzie siê
 	 */
@@ -42,6 +42,17 @@ public class EventCollection{
 		return events.add(e);
 	}
 	
+	/**
+	 * Dodaje wydarzenie do listy, u¿ywany w warstwach interfejsu
+	 * @param title tytu³ 
+	 * @param description opis 
+	 * @param place miejsce
+	 * @param alarmTrigger czy ustawiony alarm
+	 * @param alarmDate data alarmu
+	 * @param startDate data pocz¹tku
+	 * @param endDate data zakoñczenia
+	 * @return true, jeœli dodawanie zakoñczy³o siê pomyœlnie
+	 */
 	public boolean addEvent(String title, String description, String place, boolean alarmTrigger, Calendar alarmDate,Calendar startDate, Calendar endDate)
 	{
 		return events.add(new MyEvent(title, description, place, alarmTrigger, alarmDate,startDate,  endDate));
