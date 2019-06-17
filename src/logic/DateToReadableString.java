@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
- * Klasa konwertuj¹ca datê do czytelnej postaci
+ * Klasa konwertuj¹ca datê do czytelnej postaci, sprawdza tak¿e czy data rozpoczêcia jest przed dat¹ zakoñczenia
  *
  */
 public class DateToReadableString {
@@ -67,6 +67,12 @@ public class DateToReadableString {
 		return s.matches("^\\d{2}/\\d{2}/\\d{4}\\s\\d{2}:\\d{2}");
 	}
 	
+	/**
+	 * Sprawdza czy podane daty s¹ takie same
+	 * @param date1 pierwsza data
+	 * @param date2 druga data
+	 * @return true, kiedy daty s¹ takie same
+	 */
 	public static boolean isDateTheSame(Calendar date1, Calendar date2)
 	{
 		Calendar calendar = Calendar.getInstance();
@@ -85,6 +91,14 @@ public class DateToReadableString {
 		else return false;		
 	}
 	
+	/**
+	 * Sprawdza (w przypadku takich samych dat) czy godzina startu jest przed godzin¹ zakoñczenia
+	 * @param startHour godzina rozpocz¹cia
+	 * @param startMinute minuta rozpoczêcia
+	 * @param endHour godzina zakoñczenia
+	 * @param endMinute minuta zakoñczenia
+	 * @return true, jeœli godzina startu jest przed godzin¹ zakoñczenia
+	 */
 	public static boolean isHourStartBeforeEnd(int startHour, int startMinute, int endHour, int endMinute)
 	{
 		if (startHour == endHour)
