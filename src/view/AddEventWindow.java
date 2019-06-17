@@ -87,7 +87,7 @@ public class AddEventWindow
 						}
 						else
 						{
-							if (isDateTheSame() && !isHourStartBeforeEnd
+							if (DateToReadableString.isDateTheSame(dateStartCalendar,dateEndCalendar) && !DateToReadableString.isHourStartBeforeEnd
 								(
 									Integer.parseInt((String)startHour.getSelectedItem()),
 									Integer.parseInt((String)startMinute.getSelectedItem()), 
@@ -116,14 +116,14 @@ public class AddEventWindow
 
 								if(titleField.getText().isEmpty() == false) 
 								{
-									events.addEvent(new MyEvent(
+									events.addEvent(
 											titleField.getText(),
 											descriptionArea.getText(),
 											placeField.getText(),
 											alarmCheckbox.getState(),
 											alarmCalendar,
 											dateStartCalendar,
-											dateEndCalendar));
+											dateEndCalendar);
 									
 									System.out.println("Event added");
 									frame.dispose();
@@ -348,34 +348,4 @@ public class AddEventWindow
 		frame.getContentPane().add(cancelButton);
 	}
 	
-	private boolean isDateTheSame()
-	{
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(dateStartChooser.getDate());
-		Calendar calendar2 = Calendar.getInstance();
-		calendar2.setTime(dateEndChooser.getDate());
-		
-		if (
-				calendar.get(Calendar.DAY_OF_MONTH) == calendar2.get(Calendar.DAY_OF_MONTH) && 
-				calendar.get(Calendar.MONTH) == calendar2.get(Calendar.MONTH) &&
-				calendar.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR)
-		   )
-		{
-			return true;
-		}
-		else return false;		
-	}
-	
-	private boolean isHourStartBeforeEnd(int startHour, int startMinute, int endHour, int endMinute)
-	{
-		if (startHour == endHour)
-		{
-			if (startMinute <= endMinute)
-				return true;
-			else return false;
-		}
-		else if (startHour < endHour)
-			return true;
-		else return false;
-	}
 }

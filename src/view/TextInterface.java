@@ -113,7 +113,7 @@ public class TextInterface {
 					}
 					else
 					{
-						if (isDateTheSame(dateStart, dateEnd) && !isHourStartBeforeEnd
+						if (DateToReadableString.isDateTheSame(dateStart, dateEnd) && !DateToReadableString.isHourStartBeforeEnd
 							(
 								Integer.parseInt(start.substring(11,13)),
 								Integer.parseInt(start.substring(14,16)),
@@ -156,10 +156,8 @@ public class TextInterface {
 						}
 					}
 				}
-				
-				MyEvent e = new MyEvent(title,description,place,alarmBool,alarmCalendar,DateToReadableString.reverseStringToCalendar(start),DateToReadableString.reverseStringToCalendar(end));
-				events.addEvent(e);
-				
+		
+				events.addEvent(title,description,place,alarmBool,alarmCalendar,DateToReadableString.reverseStringToCalendar(start),DateToReadableString.reverseStringToCalendar(end));
 				break;
 			}
 			case '4':{
@@ -241,36 +239,5 @@ public class TextInterface {
 		}
 	}
 	
-		private boolean isDateTheSame(Calendar date1, Calendar date2)
-		{
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(date1.getTime());
-			Calendar calendar2 = Calendar.getInstance();
-			calendar2.setTime(date2.getTime());
-			
-			if (
-					calendar.get(Calendar.DAY_OF_MONTH) == calendar2.get(Calendar.DAY_OF_MONTH) && 
-					calendar.get(Calendar.MONTH) == calendar2.get(Calendar.MONTH) &&
-					calendar.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR)
-			   )
-			{
-				return true;
-			}
-			else return false;		
-		}
-		
-		private boolean isHourStartBeforeEnd(int startHour, int startMinute, int endHour, int endMinute)
-		{
-			if (startHour == endHour)
-			{
-				if (startMinute <= endMinute)
-					return true;
-				else return false;
-			}
-			else if (startHour < endHour)
-				return true;
-			else return false;
-		}
-
 }
 

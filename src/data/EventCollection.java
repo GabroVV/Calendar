@@ -42,6 +42,11 @@ public class EventCollection{
 		return events.add(e);
 	}
 	
+	public boolean addEvent(String title, String description, String place, boolean alarmTrigger, Calendar alarmDate,Calendar startDate, Calendar endDate)
+	{
+		return events.add(new MyEvent(title, description, place, alarmTrigger, alarmDate,startDate,  endDate));
+	}
+	
 	/**
 	 * Usuwa wydarzenie z listy
 	 * @param e wybrane wydarzenie

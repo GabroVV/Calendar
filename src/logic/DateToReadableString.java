@@ -66,5 +66,36 @@ public class DateToReadableString {
 	public static boolean checkFormat(String s) {
 		return s.matches("^\\d{2}/\\d{2}/\\d{4}\\s\\d{2}:\\d{2}");
 	}
+	
+	public static boolean isDateTheSame(Calendar date1, Calendar date2)
+	{
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date1.getTime());
+		Calendar calendar2 = Calendar.getInstance();
+		calendar2.setTime(date2.getTime());
+		
+		if (
+				calendar.get(Calendar.DAY_OF_MONTH) == calendar2.get(Calendar.DAY_OF_MONTH) && 
+				calendar.get(Calendar.MONTH) == calendar2.get(Calendar.MONTH) &&
+				calendar.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR)
+		   )
+		{
+			return true;
+		}
+		else return false;		
+	}
+	
+	public static boolean isHourStartBeforeEnd(int startHour, int startMinute, int endHour, int endMinute)
+	{
+		if (startHour == endHour)
+		{
+			if (startMinute <= endMinute)
+				return true;
+			else return false;
+		}
+		else if (startHour < endHour)
+			return true;
+		else return false;
+	}
 
 };
